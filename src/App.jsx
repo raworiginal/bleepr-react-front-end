@@ -1,20 +1,23 @@
 // src/App.jsx
 import { useContext, useState, useEffect } from "react";
-import { Routes, Route } from "react-router"; // Import React Router
+import { Routes, Route, useNavigate } from "react-router"; // Import React Router
 import { BleeprContext } from "./contexts/BleeprContext";
 import BleepFeed from "./components/BleepFeed/BleepFeed";
 import * as bleepsService from "./services/bleepsService";
-
+import BleepForm from "./components/BleepForm/BleepForm";
 import NavBar from "./components/NavBar/NavBar";
 // Import the SignUpForm component
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { hydrateRoot } from "react-dom/client";
 
 const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
+	const navigate = useNavigate()
+
 
 	useEffect(() => {
 		const fetchAllBleeps = async () => {
@@ -24,6 +27,12 @@ const App = () => {
 		if (bleepr) fetchAllBleeps();
 	}, [bleepr]);
 
+
+	const handleAddBleep = async (bleepFormData) => {
+		const newBleep = await bleepsService.create(bleepFormData)
+		setBleeps([newBleep, ...bleeps])
+		navigate("/bleeps")
+	}
 	return (
 		<>
 			<NavBar />
@@ -33,6 +42,7 @@ const App = () => {
 				{bleepr ? (
 					<>
 						<Route path="/bleeps" element={<BleepFeed bleeps={bleeps} />} />
+						<Route path="bleeps/new" element={<BleepForm handleAddBleep={handleAddBleep } />} />
 					</>
 				) : (
 					<>

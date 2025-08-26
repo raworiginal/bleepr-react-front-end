@@ -15,7 +15,7 @@ const NavBar = () => {
 	return (
 		<nav className="container">
 			{bleepr ? (
-				<ProtectedRoutes bleepr={bleepr} handleSignOut={handleSignOut} />
+					<ProtectedRoutes bleepr={bleepr} handleSignOut={handleSignOut} />
 			) : (
 				<UnprotectedRoutes />
 			)}
