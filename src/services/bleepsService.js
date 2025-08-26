@@ -44,7 +44,7 @@ const show = async (bleepId) => {
 	}
 }
 
-const update = async (bleepId, bleepFormData)=>{
+const update = async (bleepId, bleepFormData) => {
 	try {
 		const res = await fetch(`${BASE_URL}/${bleepId}`, {
 			method: "PUT",
@@ -60,4 +60,18 @@ const update = async (bleepId, bleepFormData)=>{
 	}
 };
 
-export { index, create, show,update, };
+const deleteBleep = async (bleepId) => {
+	try {
+		const res = await fetch(`${BASE_URL}/${hootId}`, {
+			method: 'DELETE',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
+			},
+		});
+		return res.json();
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+export { index, create, show, update, deleteBleep };

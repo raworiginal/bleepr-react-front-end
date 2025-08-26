@@ -40,35 +40,44 @@ const App = () => {
 	};
 
 
+	const handleDeleteBleep = async (bleepId) => {
+		const deletedBleep = await bleepsService.deleteBleep(bleepId)
+		setBleeps(bleeps.filter((bleep) => bleep._id !== deletedBleep._id));
+		navigate("/bleeps")
+	};
 
 	return (
-    <>
-      <NavBar />
-      {/* Add the Routes component to wrap our individual routes*/}
-      <Routes>
-        <Route
-          path="/"
-          element={bleepr ? <BleepFeed bleeps={bleeps} /> : <Landing />}
-        />
-        {bleepr ? (
-          <>
-            <Route path="/bleeps" element={<BleepFeed bleeps={bleeps} />} />
-            <Route
-              path="bleeps/new"
-              element={<BleepForm handleAddBleep={handleAddBleep} />}
-            />
-            <Route path="bleeps/:bleepId" element={<BleepDetails />} />
-						<Route path="bleeps/:bleepId/edit" element={<BleepForm handleUpdateBleep={ handleUpdateBleep} />} />
-          </>
-        ) : (
-          <>
-            <Route path="/sign-up" element={<SignUpForm />} />
-            <Route path="/sign-in" element={<SignInForm />} />
-          </>
-        )}
-      </Routes>
-    </>
-  );
+		<>
+			<NavBar />
+			{/* Add the Routes component to wrap our individual routes*/}
+			<Routes>
+				<Route
+					path="/"
+					element={bleepr ? <BleepFeed bleeps={bleeps} /> : <Landing />}
+				/>
+				{bleepr ? (
+					<>
+						<Route path="/bleeps" element={<BleepFeed 
+						bleeps={bleeps} 
+						handleDeleteBleep={handleDeleteBleep} 
+						handleUpdateBleep={handleUpdateBleep}
+						/>} />
+						<Route
+							path="bleeps/new"
+							element={<BleepForm handleAddBleep={handleAddBleep} />}
+						/>
+						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
+						<Route path="bleeps/:bleepId/edit" element={<BleepForm handleUpdateBleep={handleUpdateBleep} />} />
+					</>
+				) : (
+					<>
+						<Route path="/sign-up" element={<SignUpForm />} />
+						<Route path="/sign-in" element={<SignInForm />} />
+					</>
+				)}
+			</Routes>
+		</>
+	);
 };
 
 export default App;
