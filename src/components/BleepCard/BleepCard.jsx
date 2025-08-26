@@ -1,7 +1,9 @@
 import { useState, useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
+
 const BleepCard = (props) => {
 	const { bleepr } = useContext(BleeprContext);
+	const [bleep, setBleep] = useState();
 	return (
 		<article>
 			<header>
@@ -16,15 +18,15 @@ const BleepCard = (props) => {
 				).toLocaleDateString()}`}</p>
 				<div role="group">
 					<button>Like</button>
-					{bleepr && (
+					{props.bleep.author._id === bleepr._id && (
 						<>
-							<button>Edit</button>
-							<button>Delete</button>
+							<button onClick={() => props.handleUpdatedBleep(bleepId)}>edit</button>
+							<button onClick={() => props.handleDeleteBleep(bleepId)}>delete</button>
 						</>
 					)}
-				</div>
-			</footer>
-		</article>
+			</div>
+		</footer>
+		</article >
 	);
 };
 

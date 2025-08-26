@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams,Link } from "react-router";
 import * as BleepsService from "../../services/bleepsService";
+
 
 const BleepDetails = (props) => {
 	const { bleepId } = useParams();

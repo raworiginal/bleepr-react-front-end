@@ -7,7 +7,7 @@ import { BleeprContext } from "../../contexts/BleeprContext";
 
 const BleepFeed = (props) => {
 	const { bleepr } = useContext(BleeprContext);
-
+	
 	return (
 		<main className="container">
 			{props.bleeps.map((bleep) => (
