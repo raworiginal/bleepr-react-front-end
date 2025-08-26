@@ -5,7 +5,7 @@ const ProtectedRoutes = (props) => {
 		<ul>
 			<li>Welcome, {props.bleepr.username} </li>
 			<li>
-				<Link to="/">Dashboard</Link>
+				<Link to="/bleeps">Bleep Feed</Link>
 			</li>
 			<li>
 				<Link to={"/"} onClick={props.handleSignOut}>
