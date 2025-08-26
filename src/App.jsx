@@ -32,33 +32,43 @@ const App = () => {
 		setBleeps([newBleep, ...bleeps]);
 		navigate("/");
 	};
+
+	const handleUpdateBleep = async (bleepId, bleepFormData) => {
+		const updatedBleep = await bleepsService.update(bleepId, bleepFormData)
+		setBleeps(bleeps.map((bleep) => (bleepId === bleep._id ? updatedBleep : bleep)))
+		navigate(`/bleeps/${bleepId}`)
+	};
+
+
+
 	return (
-		<>
-			<NavBar />
-			{/* Add the Routes component to wrap our individual routes*/}
-			<Routes>
-				<Route
-					path="/"
-					element={bleepr ? <BleepFeed bleeps={bleeps} /> : <Landing />}
-				/>
-				{bleepr ? (
-					<>
-						<Route path="/bleeps" element={<BleepFeed bleeps={bleeps} />} />
-						<Route
-							path="bleeps/new"
-							element={<BleepForm handleAddBleep={handleAddBleep} />}
-						/>
-						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
-					</>
-				) : (
-					<>
-						<Route path="/sign-up" element={<SignUpForm />} />
-						<Route path="/sign-in" element={<SignInForm />} />
-					</>
-				)}
-			</Routes>
-		</>
-	);
+    <>
+      <NavBar />
+      {/* Add the Routes component to wrap our individual routes*/}
+      <Routes>
+        <Route
+          path="/"
+          element={bleepr ? <BleepFeed bleeps={bleeps} /> : <Landing />}
+        />
+        {bleepr ? (
+          <>
+            <Route path="/bleeps" element={<BleepFeed bleeps={bleeps} />} />
+            <Route
+              path="bleeps/new"
+              element={<BleepForm handleAddBleep={handleAddBleep} />}
+            />
+            <Route path="bleeps/:bleepId" element={<BleepDetails />} />
+						<Route path="bleeps/:bleepId/edit" element={<BleepForm handleUpdateBleep={ handleUpdateBleep} />} />
+          </>
+        ) : (
+          <>
+            <Route path="/sign-up" element={<SignUpForm />} />
+            <Route path="/sign-in" element={<SignInForm />} />
+          </>
+        )}
+      </Routes>
+    </>
+  );
 };
 
 export default App;
