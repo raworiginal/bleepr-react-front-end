@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 import * as bleeprService from "../../services/bleeprService";
+import BleepFeed from "../BleepFeed/BleepFeed";
 const Dashboard = (props) => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeprs, setBleeprs] = useState([]);
@@ -20,9 +21,7 @@ const Dashboard = (props) => {
 	return (
 		<main className="container">
 			<h1>Welcome, {bleepr.username}</h1>
-			<p>
-				This is the dashboard page where you can see a list of all the bleeprs.
-			</p>
+			<Route Path="/bleeps" element={<BleepFeed bleep={bleep} />} />
 			<ul>
 				{bleeprs.map((bleepr, index) => {
 					return <li key={bleepr._id}>{bleepr.username}</li>;
