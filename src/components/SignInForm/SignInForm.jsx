@@ -16,22 +16,22 @@ const SignInForm = () => {
 		password: "",
 	});
 
-	const handleChange = (evt) => {
+	const handleChange = (event) => {
 		setMessage("");
-		setFormData({ ...formData, [evt.target.name]: evt.target.value });
+		setFormData({ ...formData, [event.target.name]: event.target.value });
 	};
 
-	const handleSubmit = async (evt) => {
-		evt.preventDefault();
+	const handleSubmit = async (event) => {
+		event.preventDefault();
 		try {
 			// This function doesn't exist yet, but we'll create it soon.
 			// It will cause an error right now
 			const signedInBleepr = await signIn(formData);
 
 			setBleepr(signedInBleepr);
-			navigate("/");
-		} catch (err) {
-			setMessage(err.message);
+			navigate("/bleeps");
+		} catch (error) {
+			setMessage(error.message);
 		}
 	};
 

@@ -28,7 +28,7 @@ const SignUpForm = () => {
 		try {
 			const newBleepr = await signUp(formData);
 			setBleepr(newBleepr);
-			navigate("/");
+			navigate("/bleeps");
 		} catch (err) {
 			setMessage(err.message);
 		}
