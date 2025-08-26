@@ -1,35 +1,23 @@
 import { Link } from "react-router";
 import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
+import { BleeprContext } from "../../contexts/BleeprContext";
+import ProtectedRoutes from "./ProtectedRoutes";
+import UnprotectedRoutes from "./UnprotectedRoutes";
 
 const NavBar = () => {
-	const { user, setUser } = useContext(UserContext);
+	const { bleepr, setBleepr } = useContext(BleeprContext);
 
 	const handleSignOut = () => {
 		localStorage.removeItem("token");
-		setUser(null);
+		setBleepr(null);
 	};
 
 	return (
-		<nav>
-			{user ? (
-				<ul>
-					<li>Welcome, {user.username} </li>
-					<li>
-						<Link to="/">Dashboard</Link>
-					</li>
-					<li>
-						<Link to={"/"} onClick={handleSignOut}>
-							Sign Out
-						</Link>
-					</li>
-				</ul>
+		<nav className="container">
+			{bleepr ? (
+				<ProtectedRoutes bleepr={bleepr} handleSignOut={handleSignOut} />
 			) : (
-					<ul>
-						<li><Link to="/">Home</Link></li>
-					<li><Link to="/sign-in">Sign In</Link></li>
-					<li><Link to="/sign-up">Sign Up</Link></li>
-				</ul>
+				<UnprotectedRoutes />
 			)}
 		</nav>
 	);

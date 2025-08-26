@@ -1,31 +1,31 @@
 import { useContext } from "react";
 import { useEffect, useState } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import * as userService from "../../services/userService";
+import { BleeprContext } from "../../contexts/BleeprContext";
+import * as bleeprService from "../../services/bleeprService";
 const Dashboard = (props) => {
-	const { user } = useContext(UserContext);
-	const [users, setUsers] = useState([]);
+	const { bleepr } = useContext(BleeprContext);
+	const [bleeprs, setBleeprs] = useState([]);
 	useEffect(() => {
-		const fetchUsers = async () => {
+		const fetchBleeprs = async () => {
 			try {
-				const fetchedUsers = await userService.index();
-				setUsers(fetchedUsers);
+				const fetchedBleeprs = await bleeprService.index();
+				setBleeprs(fetchedBleeprs);
 			} catch (err) {
 				console.log(err);
 			}
 		};
-		if (user) fetchUsers();
-	}, [user]);
+		if (bleepr) fetchBleeprs();
+	}, [bleepr]);
 
 	return (
-		<main>
-			<h1>Welcome, {user.username}</h1>
+		<main className="container">
+			<h1>Welcome, {bleepr.username}</h1>
 			<p>
-				This is the dashboard page where you can see a list of all the users.
+				This is the dashboard page where you can see a list of all the bleeprs.
 			</p>
 			<ul>
-				{users.map((user, index) => {
-					return <li key={index}>{user.username}</li>;
+				{bleeprs.map((bleepr, index) => {
+					return <li key={bleepr._id}>{bleepr.username}</li>;
 				})}
 			</ul>
 		</main>

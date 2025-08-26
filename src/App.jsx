@@ -1,7 +1,7 @@
 // src/App.jsx
 import { useContext, useState } from "react";
 import { Routes, Route } from "react-router"; // Import React Router
-import { UserContext } from "./contexts/UserContext";
+import { BleeprContext } from "./contexts/BleeprContext";
 
 import NavBar from "./components/NavBar/NavBar";
 // Import the SignUpForm component
@@ -11,14 +11,14 @@ import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 const App = () => {
-	const { user } = useContext(UserContext);
+	const { bleepr } = useContext(BleeprContext);
 
 	return (
 		<>
 			<NavBar />
 			{/* Add the Routes component to wrap our individual routes*/}
 			<Routes>
-				<Route path="/" element={user ? <Dashboard /> : <Landing />} />
+				<Route path="/" element={bleepr ? <Dashboard /> : <Landing />} />
 				<Route path="/sign-up" element={<SignUpForm />} />
 				<Route path="/sign-in" element={<SignInForm />} />
 			</Routes>
