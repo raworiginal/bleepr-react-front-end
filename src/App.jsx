@@ -38,7 +38,7 @@ const App = () => {
 			<NavBar />
 			{/* Add the Routes component to wrap our individual routes*/}
 			<Routes>
-				{/* <Route path="/" element={bleepr ? <BleepFeed /> : <Landing />} /> */}
+				<Route path="/" element={bleepr ? <BleepFeed /> : <Landing />} />
 				{bleepr ? (
 					<>
 						<Route path="/bleeps" element={<BleepFeed bleeps={bleeps} />} />
