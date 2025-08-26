@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { Routes, Route } from "react-router"; // Import React Router
 import { BleeprContext } from "./contexts/BleeprContext";
 import BleepFeed from "./components/BleepFeed/BleepFeed";
-import * as bleepsService from "./services/bleepsService"
+import * as bleepsService from "./services/bleepsService";
 
 import NavBar from "./components/NavBar/NavBar";
 // Import the SignUpForm component
@@ -29,7 +29,7 @@ const App = () => {
 			<NavBar />
 			{/* Add the Routes component to wrap our individual routes*/}
 			<Routes>
-				<Route path="/" element={bleepr ? <BleepFeed /> : <Landing />} />
+				{/* <Route path="/" element={bleepr ? <BleepFeed /> : <Landing />} /> */}
 				{bleepr ? (
 					<>
 						<Route path="/bleeps" element={<BleepFeed bleeps={bleeps} />} />

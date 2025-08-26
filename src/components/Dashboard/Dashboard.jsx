@@ -23,7 +23,7 @@ const Dashboard = (props) => {
 			<h1>Welcome, {bleepr.username}</h1>
 			<Route Path="/bleeps" element={<BleepFeed bleep={bleep} />} />
 			<ul>
-				{bleeprs.map((bleepr, index) => {
+				{bleeprs.map((bleepr) => {
 					return <li key={bleepr._id}>{bleepr.username}</li>;
 				})}
 			</ul>
