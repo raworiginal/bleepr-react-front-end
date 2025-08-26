@@ -1,10 +1,24 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useParams } from "react-router"
+import * as BleepsService from "../../services/bleepsService";
 
 const BleepForm = (props) => {
+  const {bleepId} = useParams()
   const [formData, setFormData] = useState({
     text: "",
     hashtags: [],
   });
+
+
+  useEffect(() => {
+    const fetchBleep = async () => {
+      const bleepData = await BleepsService.show(bleepId)
+      setFormData(bleepData)
+    }
+    if (bleepId) fetchBleep()
+    return () => setFormData({ text: "", hashtags: [] });
+  }, [bleepId])
+
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -12,12 +26,17 @@ const BleepForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.handleAddBleep(formData)
+    if (bleepId) {
+      props.handleUpdateBleep(bleepId, formData)
+    } else {
+      props.handleAddBleep(formData)
+    }
   };
 
 
   return (
     <main>
+      <h2>{bleepId ? "Edit Bleep" : "New Bleep"}</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="text">bleep:</label>
         <input

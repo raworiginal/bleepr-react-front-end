@@ -43,4 +43,21 @@ const show = async (bleepId) => {
 		console.log(error);
 	}
 }
-export { index, create, show, };
+
+const update = async (bleepId, bleepFormData)=>{
+	try {
+		const res = await fetch(`${BASE_URL}/${bleepId}`, {
+			method: "PUT",
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(bleepFormData),
+		});
+		return res.json();
+	} catch (error) {
+		console.log(error)
+	}
+};
+
+export { index, create, show,update, };
