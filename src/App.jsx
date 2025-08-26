@@ -17,8 +17,7 @@ import BleepDetails from "./components/BleepDetails/BleepDetails";
 const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
-	const navigate = useNavigate()
-
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchAllBleeps = async () => {
@@ -28,22 +27,27 @@ const App = () => {
 		if (bleepr) fetchAllBleeps();
 	}, [bleepr]);
 
-
 	const handleAddBleep = async (bleepFormData) => {
-		const newBleep = await bleepsService.create(bleepFormData)
-		setBleeps([newBleep, ...bleeps])
-		navigate("/bleeps")
-	}
+		const newBleep = await bleepsService.create(bleepFormData);
+		setBleeps([newBleep, ...bleeps]);
+		navigate("/");
+	};
 	return (
 		<>
 			<NavBar />
 			{/* Add the Routes component to wrap our individual routes*/}
 			<Routes>
-				<Route path="/" element={bleepr ? <BleepFeed /> : <Landing />} />
+				<Route
+					path="/"
+					element={bleepr ? <BleepFeed bleeps={bleeps} /> : <Landing />}
+				/>
 				{bleepr ? (
 					<>
 						<Route path="/bleeps" element={<BleepFeed bleeps={bleeps} />} />
-						<Route path="bleeps/new" element={<BleepForm handleAddBleep={handleAddBleep } />} />
+						<Route
+							path="bleeps/new"
+							element={<BleepForm handleAddBleep={handleAddBleep} />}
+						/>
 						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
 					</>
 				) : (
