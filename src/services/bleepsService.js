@@ -12,8 +12,8 @@ const index = async () => {
 		}
 		return data;
 	} catch (err) {
-		console.log(err);
-		throw new Error(err);
+		console.log(error);
+		throw new Error(error);
 	}
 };
 
@@ -32,4 +32,15 @@ const create = async (bleepFormData) => {
 		console.log(error)
 	}
 }
-export { index, create };
+
+const show = async (bleepId) => {
+	try {
+		const res = await fetch(`${BASE_URL}/${bleepId}`, {
+			headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+		});
+		return res.json();
+	} catch (error) {
+		console.log(error);
+	}
+}
+export { index, create, show, };

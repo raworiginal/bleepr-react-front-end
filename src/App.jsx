@@ -12,6 +12,7 @@ import SignInForm from "./components/SignInForm/SignInForm";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { hydrateRoot } from "react-dom/client";
+import BleepDetails from "./components/BleepDetails/BleepDetails";
 
 const App = () => {
 	const { bleepr } = useContext(BleeprContext);
@@ -43,6 +44,7 @@ const App = () => {
 					<>
 						<Route path="/bleeps" element={<BleepFeed bleeps={bleeps} />} />
 						<Route path="bleeps/new" element={<BleepForm handleAddBleep={handleAddBleep } />} />
+						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
 					</>
 				) : (
 					<>
