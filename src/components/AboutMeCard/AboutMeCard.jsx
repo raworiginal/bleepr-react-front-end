@@ -9,11 +9,12 @@ const AboutMeCard = (props) => {
 
 const result = props.bleeprs.find(( bleepr ) => bleepr._id === bleeprId);
 
-console.log(result)
+console.log(result);
+console.log(props);
 	return (
 		<div>
 			<article class="aboutMe">
-			{/* <h1>{props.bleeprs.username}</h1>
+			<h1>{props.bleeprs.username}</h1>
 		<img
 					width={200
 					}
@@ -23,7 +24,7 @@ console.log(result)
 					}
 					alt="profile picture"
 				/>
-				<p>{props.bleepr.isOnline}</p> */}
+				<p>{props.bleepr.isOnline}</p>
 				</article>
 		</div>
 	);
