@@ -20,7 +20,7 @@ const NavBar = () => {
       <ul>
         <li>
           <img
-            src="src/assets/images/Bleepo-transparent.png"
+            src="https://images.pexels.com/photos/33642104/pexels-photo-33642104.png"
             alt="bleepo-nav"
             className="bleepo-nav"
             width="60px"
