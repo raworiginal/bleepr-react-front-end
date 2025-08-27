@@ -74,4 +74,24 @@ const deleteBleep = async (bleepId) => {
 	}
 };
 
-export { index, create, show, update, deleteBleep };
+const updateLike = async (bleepId, bleeprId) => {
+	try {
+		const res = await fetch(`/bleeps/${bleepId}/liked-by/${bleeprId}`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (!res.ok) {
+			throw new Error("Failed to update like");
+		}
+
+		return res.json();
+	} catch (error) {
+		console.log(error)
+	}
+};
+
+export { index, create, show, update, deleteBleep, updateLike, };

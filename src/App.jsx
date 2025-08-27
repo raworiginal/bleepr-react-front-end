@@ -18,6 +18,7 @@ const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
 	const navigate = useNavigate();
+	
 
 	useEffect(() => {
 		const fetchAllBleeps = async () => {
@@ -46,6 +47,8 @@ const App = () => {
 		setBleeps(bleeps.filter((bleep) => bleep._id !== deletedBleep._id));
 		navigate("/bleeps");
 	};
+
+
 
 	return (
 		<>
