@@ -34,16 +34,17 @@ const App = () => {
 	};
 
 	const handleUpdateBleep = async (bleepId, bleepFormData) => {
-		const updatedBleep = await bleepsService.update(bleepId, bleepFormData)
-		setBleeps(bleeps.map((bleep) => (bleepId === bleep._id ? updatedBleep : bleep)))
-		navigate(`/bleeps/${bleepId}`)
+		const updatedBleep = await bleepsService.update(bleepId, bleepFormData);
+		setBleeps(
+			bleeps.map((bleep) => (bleepId === bleep._id ? updatedBleep : bleep))
+		);
+		navigate(`/bleeps/${bleepId}`);
 	};
 
-
 	const handleDeleteBleep = async (bleepId) => {
-		const deletedBleep = await bleepsService.deleteBleep(bleepId)
+		const deletedBleep = await bleepsService.deleteBleep(bleepId);
 		setBleeps(bleeps.filter((bleep) => bleep._id !== deletedBleep._id));
-		navigate("/bleeps")
+		navigate("/bleeps");
 	};
 
 	return (
@@ -53,21 +54,39 @@ const App = () => {
 			<Routes>
 				<Route
 					path="/"
-					element={bleepr ? <BleepFeed bleeps={bleeps} /> : <Landing />}
+					element={
+						bleepr ? (
+							<BleepFeed
+								bleeps={bleeps}
+								handleDeleteBleep={handleDeleteBleep}
+								handleUpdateBleep={handleUpdateBleep}
+							/>
+						) : (
+							<Landing />
+						)
+					}
 				/>
 				{bleepr ? (
 					<>
-						<Route path="/bleeps" element={<BleepFeed 
-						bleeps={bleeps} 
-						handleDeleteBleep={handleDeleteBleep} 
-						handleUpdateBleep={handleUpdateBleep}
-						/>} />
+						<Route
+							path="/bleeps"
+							element={
+								<BleepFeed
+									bleeps={bleeps}
+									handleDeleteBleep={handleDeleteBleep}
+									handleUpdateBleep={handleUpdateBleep}
+								/>
+							}
+						/>
 						<Route
 							path="bleeps/new"
 							element={<BleepForm handleAddBleep={handleAddBleep} />}
 						/>
 						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
-						<Route path="bleeps/:bleepId/edit" element={<BleepForm handleUpdateBleep={handleUpdateBleep} />} />
+						<Route
+							path="bleeps/:bleepId/edit"
+							element={<BleepForm handleUpdateBleep={handleUpdateBleep} />}
+						/>
 					</>
 				) : (
 					<>
