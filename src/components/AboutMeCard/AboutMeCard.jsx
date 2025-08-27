@@ -7,9 +7,9 @@ const AboutMeCard = (props) => {
 	const [aboutMe, setAboutMe] = useState(null);
 	const { bleeprId } = useParams();
 
+const result = props.bleeprs.find(( bleepr ) => bleepr._id === bleeprId);
 
-
-console.log(props)
+console.log(result)
 	return (
 		<div>
 			<article class="aboutMe">
