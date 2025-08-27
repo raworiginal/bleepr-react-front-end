@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from "react-router"; // Import React Route
 import { BleeprContext } from "./contexts/BleeprContext";
 import BleepFeed from "./components/BleepFeed/BleepFeed";
 import * as bleepsService from "./services/bleepsService";
+import * as bleeprService from "./services/bleeprService";
 import BleepForm from "./components/BleepForm/BleepForm";
 import NavBar from "./components/NavBar/NavBar";
 // Import the SignUpForm component
@@ -11,12 +12,13 @@ import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
-import { hydrateRoot } from "react-dom/client";
 import BleepDetails from "./components/BleepDetails/BleepDetails";
+import AboutMeCard from "./components/AboutMeCard/AboutMeCard";
 
 const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
+	const [bleeprs, setBleeprs] = useState([]);
 	const navigate = useNavigate();
 
 
@@ -26,6 +28,14 @@ const App = () => {
 			setBleeps(bleepData);
 		};
 		if (bleepr) fetchAllBleeps();
+	}, [bleepr]);
+
+		useEffect(() => {
+		const fetchAllBleeprs = async () => {
+			const bleeprData = await bleeprService.index();
+			setBleeprs(bleeprData);
+		};
+		if (bleepr) fetchAllBleeprs();
 	}, [bleepr]);
 
 	const handleAddBleep = async (bleepFormData) => {
@@ -93,8 +103,8 @@ const App = () => {
 						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
 						<Route
 							path="bleeps/:bleepId/edit"
-							element={<BleepForm handleUpdateBleep={handleUpdateBleep} />}
-						/>
+							element={<BleepForm handleUpdateBleep={handleUpdateBleep} />} />
+						<Route path="/:bleeprId/aboutMe" element={<AboutMeCard bleeprs={bleeprs}/>} />
 					</>
 				) : (
 					<>
