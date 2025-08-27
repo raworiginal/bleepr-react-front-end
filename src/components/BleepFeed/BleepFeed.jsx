@@ -11,7 +11,7 @@ const BleepFeed = (props) => {
 	if (!props.bleeps.length)
 		return <span aria-busy="true">bleepin' around...</span>;
 	return (
-		<main className="container">
+		<main className="container feed">
 			{props.bleeps.map((bleep) => (
 				// <Link
 				// 	style={{ textDecoration: "none" }}

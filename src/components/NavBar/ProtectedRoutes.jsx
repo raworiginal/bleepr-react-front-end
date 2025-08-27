@@ -2,8 +2,9 @@ import { Link } from "react-router";
 
 const ProtectedRoutes = (props) => {
 	return (
+		<>
+		
 		<ul>
-			<li>Welcome, {props.bleepr.username} </li>
 			<li>
 				<Link to="/bleeps">Bleep Feed</Link>
 			</li>
@@ -16,6 +17,7 @@ const ProtectedRoutes = (props) => {
 				</Link>
 			</li>
 		</ul>
+		</>
 	);
 };
 
