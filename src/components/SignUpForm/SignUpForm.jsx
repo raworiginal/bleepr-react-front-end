@@ -18,19 +18,19 @@ const SignUpForm = () => {
 
 	const { username, email, password, passwordConf } = formData;
 
-	const handleChange = (evt) => {
+	const handleChange = (event) => {
 		setMessage("");
-		setFormData({ ...formData, [evt.target.name]: evt.target.value });
+		setFormData({ ...formData, [event.target.name]: event.target.value });
 	};
 
-	const handleSubmit = async (evt) => {
-		evt.preventDefault();
+	const handleSubmit = async (event) => {
+		event.preventDefault();
 		try {
 			const newBleepr = await signUp(formData);
 			setBleepr(newBleepr);
 			navigate("/bleeps");
-		} catch (err) {
-			setMessage(err.message);
+		} catch (error) {
+			setMessage(error.message);
 		}
 	};
 

@@ -3,10 +3,19 @@ import { BleeprContext } from "../../contexts/BleeprContext";
 
 const BleepCard = (props) => {
 	const { bleepr } = useContext(BleeprContext);
+	console.log(props);
 	const [bleep, setBleep] = useState();
 	return (
 		<article>
 			<header>
+				<img
+					width={64}
+					src={
+						props.bleep.author.profilePicture ||
+						`https://i.pravatar.cc/300?u=${props.bleep.author._id}`
+					}
+					alt=""
+				/>
 				<p>{`@${props.bleep.author.username}`}</p>
 			</header>
 			<main>
@@ -16,17 +25,23 @@ const BleepCard = (props) => {
 				<p>{`posted on ${new Date(
 					props.bleep.createdAt
 				).toLocaleDateString()}`}</p>
-				<div role="group">
+				<div>
 					<button>Like</button>
 					{props.bleep.author._id === bleepr._id && (
 						<>
-							<button onClick={() => props.handleUpdatedBleep(bleepId)}>edit</button>
-							<button onClick={() => props.handleDeleteBleep(bleepId)}>delete</button>
+							<button
+								className="outline"
+								onClick={() => props.handleUpdatedBleep(bleepId)}>
+								edit
+							</button>
+							<button onClick={() => props.handleDeleteBleep(bleepId)}>
+								delete
+							</button>
 						</>
 					)}
-			</div>
-		</footer>
-		</article >
+				</div>
+			</footer>
+		</article>
 	);
 };
 
