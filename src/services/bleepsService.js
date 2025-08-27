@@ -110,4 +110,18 @@ const createComment = async (bleepId, commentFormData) => {
 	}
 };
 
-export { index, create, show, update, deleteBleep, updateLike,createComment, };
+const deleteComment = async (bleepId, commentId) => {
+	try {
+		const res = await fetch(`${BASE_URL}/${bleepId}/comments/${commentId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res.json();
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+export { index, create, show, update, deleteBleep, updateLike,createComment, deleteComment };
