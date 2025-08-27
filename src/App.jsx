@@ -18,7 +18,7 @@ const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
 	const navigate = useNavigate();
-	
+
 
 	useEffect(() => {
 		const fetchAllBleeps = async () => {
@@ -48,6 +48,10 @@ const App = () => {
 		navigate("/bleeps");
 	};
 
+	const handleUpdateLike = async (bleepId) => {
+		const likedBleep = await bleepsService.updateLike(props.bleep._id, bleepr._id);
+		setLikedCount(likedBleep.count);
+	}
 
 
 	return (
@@ -63,6 +67,7 @@ const App = () => {
 								bleeps={bleeps}
 								handleDeleteBleep={handleDeleteBleep}
 								handleUpdateBleep={handleUpdateBleep}
+								handleUpdateLike={handleUpdateLike}
 							/>
 						) : (
 							<Landing />

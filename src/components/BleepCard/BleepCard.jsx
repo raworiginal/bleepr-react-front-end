@@ -2,16 +2,11 @@ import { useState, useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 import { Link } from "react-router";
 const BleepCard = (props) => {
+	console.log(props)
 	const { bleepr } = useContext(BleeprContext);
 	const [bleep, setBleep] = useState();
 	const [likeCount, setLikedCount] = useState(
-		props.bleep.favoritedBy ? props.bleep.favoritedBy.length : 0
-	);
-	
-	const handleUpdateLike = async () => {
-		const likedBleep = await bleepsService.updateLike(props.bleep._id, bleepr._id);
-		setLikedCount(likedBleep.count);
-	}
+	bleep.favoritedBy ? bleep.favoritedBy.length : 0);
 
 	return (
 		<article>
@@ -36,7 +31,7 @@ const BleepCard = (props) => {
 					props.bleep.createdAt
 				).toLocaleDateString()}`}</p>
 				<div>
-					<button onClick={handleUpdateLike}>like</button>
+					<button onClick={() => props.handleUpdateLike(props.bleep._id)}>like</button>
 					{props.bleep.author._id === bleepr._id && (
 						<>
 							<Link role="button" to={`/bleeps/${props.bleep._id}/edit`}>

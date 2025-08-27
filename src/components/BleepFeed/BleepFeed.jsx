@@ -4,9 +4,7 @@ import { useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 
 const BleepFeed = (props) => {
-	{
-		console.log("Props:", props);
-	}
+	
 	const { bleepr } = useContext(BleeprContext);
 	if (!props.bleeps.length)
 		return <span aria-busy="true">bleepin' around...</span>;
@@ -22,6 +20,7 @@ const BleepFeed = (props) => {
 					bleep={bleep}
 					handleDeleteBleep={props.handleDeleteBleep}
 					handleUpdateBleep={props.handleUpdateBleep}
+					handleUpdateLike={props.handleUpdateLike}
 				/>
 				// </Link>
 			))}
