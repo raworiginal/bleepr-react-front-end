@@ -19,11 +19,7 @@ const BleepCard = (props) => {
 				<p>{`@${props.bleep.author.username}`}</p>
 			</header>
 			<main>
-				{console.log(props)}
 				<p>{props.bleep.text}</p>
-				<p>
-					<a href="#">#thisisaplaceholder #thisiswherethehashtagsgo</a>
-				</p>
 			</main>
 			<footer>
 				<p>{`posted on ${new Date(

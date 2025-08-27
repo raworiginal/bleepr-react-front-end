@@ -10,7 +10,10 @@ const BleepFeed = (props) => {
 	return (
 		<main className="container">
 			{props.bleeps.map((bleep) => (
-				<Link key={bleep._id} to={`/bleeps/${bleep._id}`}>
+				<Link
+					style={{ textDecoration: "none" }}
+					key={bleep._id}
+					to={`/bleeps/${bleep._id}`}>
 					<BleepCard bleep={bleep} />
 				</Link>
 			))}
