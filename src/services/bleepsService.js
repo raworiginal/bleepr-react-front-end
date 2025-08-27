@@ -94,4 +94,20 @@ const updateLike = async (bleepId, bleeprId) => {
 	}
 };
 
-export { index, create, show, update, deleteBleep, updateLike, };
+const createComment = async (bleepId, commentFormData) => {
+	try {
+		const res = await fetch(`${BASE_URL}/${bleepId}/comments`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(commentFormData),
+		});	
+		return res.json();
+	} catch (error) {
+		console.log(error)
+	}
+};
+
+export { index, create, show, update, deleteBleep, updateLike,createComment, };
