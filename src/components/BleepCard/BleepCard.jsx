@@ -1,17 +1,14 @@
 import { useState, useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 import { Link } from "react-router";
-
-
+import styles from "./BleepCard.module.css";
 
 const BleepCard = (props) => {
-	console.log(props)
 	const { bleepr } = useContext(BleeprContext);
 	const [bleep, setBleep] = useState();
-	
 
 	return (
-		<article>
+		<article className="bleep-card">
 			<header>
 				<img
 					width={64}
@@ -33,7 +30,9 @@ const BleepCard = (props) => {
 					props.bleep.createdAt
 				).toLocaleDateString()}`}</p>
 				<div>
-					<button onClick={() => props.handleUpdateLike(props.bleep._id)}>like</button>
+					<button onClick={() => props.handleUpdateLike(props.bleep._id)}>
+						like
+					</button>
 					{props.bleep.author._id === bleepr._id && (
 						<>
 							<Link role="button" to={`/bleeps/${props.bleep._id}/edit`}>
