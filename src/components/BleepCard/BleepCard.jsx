@@ -5,8 +5,7 @@ const BleepCard = (props) => {
 	console.log(props)
 	const { bleepr } = useContext(BleeprContext);
 	const [bleep, setBleep] = useState();
-	const [likeCount, setLikedCount] = useState(
-	bleep.favoritedBy ? bleep.favoritedBy.length : 0);
+	
 
 	return (
 		<article>

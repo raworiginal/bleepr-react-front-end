@@ -11,10 +11,33 @@ const index = async () => {
 			throw new Error(data.err);
 		}
 		return data;
-	} catch (err) {
-		console.log(err);
-		throw new Error(err);
+	} catch (error) {
+		console.log(error);
+		throw new Error(error);
 	}
 };
 
-export { index };
+const aboutMe = async (bleeprId) => {
+	try {
+		const res = await fetch(`${BASE_URL}/${bleeprId}/aboutMe`, {
+			headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+		});
+
+		if (!res.ok) {
+			throw new Error(`HTTP error! Status: ${res.status}`);
+		}
+
+			const data = await res.json();
+
+		if (data.error) {
+			throw new Error(data.error);
+		}
+
+		return data;
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+};
+
+export { index, aboutMe };
