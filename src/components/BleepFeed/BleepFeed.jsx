@@ -3,11 +3,10 @@ import BleepCard from "../BleepCard/BleepCard";
 import { useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 
-
-
 const BleepFeed = (props) => {
 	const { bleepr } = useContext(BleeprContext);
-	
+	if (!props.bleeps.length)
+		return <span aria-busy="true">bleepin' around...</span>;
 	return (
 		<main className="container">
 			{props.bleeps.map((bleep) => (
