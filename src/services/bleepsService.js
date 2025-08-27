@@ -25,24 +25,24 @@ const create = async (bleepFormData) => {
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(bleepFormData)
-		})
-		return res.json()
-	} catch (error) {
-		console.log(error)
-	}
-}
-
-const show = async (bleepId) => {
-	try {
-		const res = await fetch(`${BASE_URL}/${bleepId}`, {
-			headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+			body: JSON.stringify(bleepFormData),
 		});
 		return res.json();
 	} catch (error) {
 		console.log(error);
 	}
-}
+};
+
+const show = async (bleepId) => {
+	try {
+		const res = await fetch(`${BASE_URL}/${bleepId}`, {
+			headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+		});
+		return res.json();
+	} catch (error) {
+		console.log(error);
+	}
+};
 
 const update = async (bleepId, bleepFormData) => {
 	try {
@@ -56,22 +56,22 @@ const update = async (bleepId, bleepFormData) => {
 		});
 		return res.json();
 	} catch (error) {
-		console.log(error)
+		console.log(error);
 	}
 };
 
 const deleteBleep = async (bleepId) => {
 	try {
-		const res = await fetch(`${BASE_URL}/${hootId}`, {
-			method: 'DELETE',
+		const res = await fetch(`${BASE_URL}/${bleepId}`, {
+			method: "DELETE",
 			headers: {
-				Authorization: `Bearer ${localStorage.getItem('token')}`,
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
 			},
 		});
 		return res.json();
 	} catch (error) {
 		console.log(error);
 	}
-}
+};
 
 export { index, create, show, update, deleteBleep };

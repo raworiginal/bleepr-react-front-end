@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router";
+import BleepCard from "../BleepCard/BleepCard";
 import * as BleepsService from "../../services/bleepsService";
 
 const BleepDetails = (props) => {
@@ -19,19 +20,8 @@ const BleepDetails = (props) => {
 	}
 
 	return (
-		<main>
-			<section>
-				<header>
-					<p>
-						{`${bleep.author.username} posted on ${new Date(
-							bleep.createdAt
-						).toLocaleDateString()}`}
-					</p>
-					<p>{bleep.text.toLowerCase()}</p>
-				</header>
-
-				<Link to={`/bleeps/${bleepId}/edit`}>Edit</Link>
-			</section>
+		<main className="container">
+			<BleepCard bleep={bleep} />
 
 			<section>
 				<h2>Comments</h2>
