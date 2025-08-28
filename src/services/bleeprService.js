@@ -40,4 +40,76 @@ const aboutMe = async (bleeprId) => {
 	}
 };
 
-export { index, aboutMe };
+const editAboutMe = async (bleeprId, aboutMeData) => {
+	try {
+		const res = await fetch(`${BASE_URL}/${bleeprId}/aboutMe/edit`, {
+			method: "PUT", 
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+			},
+			body: JSON.stringify(aboutMeData)
+		});
+
+		if (!res.ok) {
+			throw new Error(`HTTP error! Status: ${res.status}`);
+		}
+
+			const data = await res.json();
+
+		if (data.error) {
+			throw new Error(data.error);
+		}
+
+		return data;
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+};
+
+const searchForBleeprs = async (bleeprId) => {
+		try {
+		const res = await fetch(`${BASE_URL}/${bleeprId}`, {
+			headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+		});
+		const data = await res.json();
+
+		if (data.err) {
+			throw new Error(data.err);
+		}
+		return data;
+	} catch (error) {
+		console.log(error);
+		throw new Error(error);
+	}
+}
+
+const editFriend = async (bleeprId) => {
+		try {
+		const res = await fetch(`${BASE_URL}/${bleeprId}/friend`, {
+			method: "PUT", 
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+			},
+		});
+
+		if (!res.ok) {
+			throw new Error(`HTTP error! Status: ${res.status}`);
+		}
+
+			const data = await res.json();
+
+		if (data.error) {
+			throw new Error(data.error);
+		}
+
+		return data;
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+}
+
+export { index, aboutMe, editAboutMe, searchForBleeprs, editFriend };

@@ -64,6 +64,13 @@ const App = () => {
 		setLikedCount(likedBleep.count);
 	}
 
+	const handleUpdateAboutMe = async (bleeprId, formData) => {
+		const updateAboutMe = await bleeprService.editAboutMe(bleeprId, formData);
+		setBleeprs(
+			bleeprs.map((bleepr) => (bleeprId === bleepr._id ? updateAboutMe : bleepr))
+		);
+		navigate(`/${bleeprId}/aboutMe`)
+	};
 
 	return (
 		<>
@@ -100,7 +107,7 @@ const App = () => {
 						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
 						<Route path="bleeps/:bleepId/edit" element={<BleepForm handleUpdateBleep={handleUpdateBleep} />} />
 						<Route path="/:bleeprId/aboutMe" element={<AboutMeCard bleeprs={bleeprs} />} />
-						<Route path="/:bleeprId/aboutMe/edit" element={<AboutMeForm />} />
+						<Route path="/:bleeprId/aboutMe/edit" element={<AboutMeForm handleUpdateAboutMe={handleUpdateAboutMe}/>} />
 					</>
 				) : (
 					<>
