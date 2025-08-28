@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start; 
+  min-height: 100vh;
+
+}
+
+/* Parent container */
+.myProfileContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Top half container: left + right */
+.profilePageTopHalf {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 80%; 
+}
+
+/* Left column: profile pic + info */
+.infoColumn {
+  width: 180px; 
+  display: flex;
+  flex-direction: column;
+  gap: 4px; 
+  font-size: 12px; 
+  line-height: 1.2; 
+  color: #000;
+}
+
+/* Profile image */
+.profileImage {
+  width: 125px;
+  height: auto;
+  border: 2px solid #999;
+  border-radius: 2px;
+  margin-bottom: 4px;
+}
+
+/* Username */
+.infoColumn h2 {
+  font-size: 14px; 
+  margin: 0 0 2px 0;
+  font-weight: bold;
+}
+
+/* Online / offline status */
+.onlineNow {
+  color: orange; 
+  font-size: 11px;
+}
+
+.offlineMsg {
+  color: gray;
+  font-size: 11px;
+}
+
+/* Individual info lines */
+.infoColumn p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+/* Right column: About Me */
+.aboutMeBox {
+ width: 300px; 
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.3;
+  background-color: #fff;
+}

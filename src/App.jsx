@@ -13,7 +13,7 @@ import SignInForm from "./components/SignInForm/SignInForm";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import BleepDetails from "./components/BleepDetails/BleepDetails";
-import AboutMeCard from "./components/AboutMeCard/AboutMeCard";
+import MyProfile from "./components/MyProfile/MyProfile";
 import AboutMeForm from "./components/AboutMeForm/AboutMeForm";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 const App = () => {
@@ -122,8 +122,10 @@ const App = () => {
 							/>
 						<Route
 							path="/:bleeprId/aboutMe"
+
 							element={<AboutMeCard bleeprs={bleeprs} />}
 							/>
+
 						<Route
 							path="/:bleeprId/aboutMe/edit"
 							element={

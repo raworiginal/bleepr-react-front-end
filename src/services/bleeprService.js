@@ -42,7 +42,7 @@ const aboutMe = async (bleeprId) => {
 
 const editAboutMe = async (bleeprId, aboutMeData) => {
 	try {
-		const res = await fetch(`${BASE_URL}/${bleeprId}/aboutMe/edit`, {
+		const res = await fetch(`${BASE_URL}/${bleeprId}/edit`, {
 			method: "PUT", 
 			headers: {
 				"Content-Type": "application/json",
