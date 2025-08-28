@@ -66,8 +66,7 @@ const App = () => {
 
 	return (
 		<>
-			<NavBar />
-			{/* Add the Routes component to wrap our individual routes*/}
+			<NavBar bleeprId={bleepr?._id} />
 			<Routes>
 				<Route
 					path="/"

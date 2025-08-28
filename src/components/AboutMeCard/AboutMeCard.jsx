@@ -1,30 +1,39 @@
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import { useParams } from "react-router";
 import * as bleeprService from "../../services/bleeprService"
+import { BleeprContext } from "../../contexts/BleeprContext";
 
 
 const AboutMeCard = (props) => {
+	const { bleepr } = useContext(BleeprContext);
 	const [aboutMe, setAboutMe] = useState(null);
 	const { bleeprId } = useParams();
 
-const result = props.bleeprs.find(( bleepr ) => bleepr._id === bleeprId);
+let result 
+props.bleeprs.map((bleepr) => {
+	if (bleeprId === bleepr._id) {
+		console.log(bleepr)
+		result = bleepr;
+	}
+});
 
-console.log(result);
-console.log(props);
+
+
 	return (
 		<div>
 			<article class="aboutMe">
 			<h1>{props.bleeprs.username}</h1>
-		<img
-					width={200
-					}
+	
+			<h1>{result ? result.username : "User not found"}</h1>
+        <p>{result ? result.aboutMe : ""}</p>
+					<img
+					width={64}
 					src={
 						props.bleeprs.profilePicture ||
 						`https://i.pravatar.cc/300?u=${props.bleeprs._id}`
 					}
 					alt="profile picture"
 				/>
-				<p>{props.bleepr.isOnline}</p>
 				</article>
 		</div>
 	);
