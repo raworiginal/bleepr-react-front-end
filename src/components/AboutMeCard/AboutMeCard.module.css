@@ -5,6 +5,7 @@
 
 .myProfileContainer .profilePageTopHalf {
   display: flex;
+  justify-content: center;
   gap: 20px;
   align-items: flex-start;
   margin-top: 20px;
@@ -51,7 +52,6 @@
 /* Online/Offline text */
 .myProfileContainer .onlineNow {
   color: orange;
-  font-weight: bold;
 }
 
 .myProfileContainer .offlineMsg {
@@ -60,11 +60,11 @@
 
 /* About Me box */
 .myProfileContainer .aboutMeBox {
-  flex: 1;
   padding: 15px;
   border: 2px solid #aaa;
   border-radius: 8px;
+  max-width: 100%;
   background-color: #fefefe;
   box-shadow: 3px 3px 6px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+  font-family: Helvetica, sans-serif;
 }

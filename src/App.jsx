@@ -62,6 +62,7 @@ const App = () => {
 		const favoritedBleep = await bleepsService.favorite(bleepId);
 		console.log(bleepId);
 		// setLikedCount(likedBleep.count);
+
 	};
 
 	return (
@@ -100,6 +101,7 @@ const App = () => {
 							element={<BleepForm handleAddBleep={handleAddBleep} />}
 						/>
 						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
+
 						<Route
 							path="bleeps/:bleepId/edit"
 							element={<BleepForm handleUpdateBleep={handleUpdateBleep} />}
@@ -109,6 +111,7 @@ const App = () => {
 							element={<AboutMeCard bleeprs={bleeprs} />}
 						/>
 						<Route path="/:bleeprId/aboutMe/edit" element={<AboutMeForm />} />
+
 					</>
 				) : (
 					<>
