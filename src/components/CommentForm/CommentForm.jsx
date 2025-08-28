@@ -2,29 +2,21 @@ import { useState } from "react";
 
 
 const CommentForm = (props) => {
-  const [formData, setFormData] = useState({ text: "" });
+ 
 
-  const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value })
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    props.handleAddComment(formData);
-    setFormData({ text: "" });
-  };
+  
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id="comment-form" onSubmit={props.handleSubmit}>
       <label htmlFor="comment">Comment:</label>
       <input
         required
         type="text"
         name="text"
         id="comment"
-        value={formData.text}
-        onChange={handleChange}
+        value={props.formData.text}
+        onChange={props.handleChange}
       />
       <button type="submit">Submit Comment</button>
     </form>
