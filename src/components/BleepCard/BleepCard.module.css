@@ -1,4 +1,53 @@
-.bleep-card {
-	display: grid;
+.bleepCard {
+	display: flex;
+	justify-content: space-between;
+	max-width: 512px;
+	padding: 0.25em;
+}
+.leftColumn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 256px;
+	margin: 0.25em 0.5em;
+}
+.username {
+	text-align: center;
+}
+.avatarFrame {
+	height: 80%;
+	display: flex;
+}
+.avatar {
+	width: fit-content;
+}
+.metrics {
+	display: flex;
+	margin: 0;
+}
+
+.rightColumn {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0.25em 0.5em;
+}
+
+.bleepText {
+	height: 80%;
 	background-color: white;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-around;
+}
+
+.post {
+	text-align: right;
+}
+
+a {
+	text-decoration: none;
 }
