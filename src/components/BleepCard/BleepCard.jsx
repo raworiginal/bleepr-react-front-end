@@ -11,8 +11,8 @@ import {
 } from "react-icons/hi";
 
 const BleepCard = (props) => {
+	// console.log(props.handleFavoriteBleep);
 	const { bleepr } = useContext(BleeprContext);
-	const [bleep, setBleep] = useState();
 
 	return (
 		<article className={styles.bleepCard}>
@@ -37,11 +37,14 @@ const BleepCard = (props) => {
 			</main>
 			<div className={styles.bottomRow}>
 				<div className={styles.buttons}>
-					<span>
-						<HiOutlineHeart /> 0
+					<span className="styles.favorited">
+						<a onClick={() => props.handleFavoriteBleep(props.bleep._id)}>
+							<HiOutlineHeart />
+						</a>
+						<span> {props.bleep.favoritedBy.length}</span>
 					</span>
 					<span>
-						<HiOutlineChat /> 0
+						<HiOutlineChat /> {props.bleep.comments.length}
 					</span>
 					{props.bleep.author._id === bleepr._id && (
 						<>
