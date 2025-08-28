@@ -1,4 +1,53 @@
-.bleep-card {
+.bleepCard {
 	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-areas:
+		"user . post "
+		"pic btext btext"
+		"pic btext btext"
+		"metrics buttons buttons";
+
+	/* place-items: center; */
+}
+.buttons {
+	grid-area: buttons;
+	display: flex;
+	justify-content: space-around;
+}
+.username {
+	display: flex;
+	font-size: 1.3em;
+	grid-area: user;
+	align-self: center;
+	justify-content: center;
+}
+.avatar {
+	grid-area: pic;
+	width: 128px;
+
+	align-self: center;
+	justify-self: center;
+}
+.bleepText {
 	background-color: white;
+	grid-area: btext;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.metrics {
+	grid-area: metrics;
+	display: flex;
+	align-self: end;
+	margin: auto auto;
+	align-self: center;
+	justify-self: center;
+	justify-content: space-around;
+}
+
+.post {
+	grid-area: post;
+}
+a {
+	text-decoration: none;
 }

@@ -8,43 +8,47 @@ const BleepCard = (props) => {
 	const [bleep, setBleep] = useState();
 
 	return (
-		<article className="bleep-card">
-			<header>
-				<img
-					width={64}
-					src={
-						props.bleep.author.profilePicture ||
-						`https://i.pravatar.cc/300?u=${props.bleep.author._id}`
-					}
-					alt="profile picture"
-				/>
+		<article className={styles.bleepCard}>
+			<div className={styles.username}>
 				<p>{`@${props.bleep.author.username}`}</p>
-			</header>
-			<main>
+			</div>
+			<img
+				className={styles.avatar}
+				src={
+					props.bleep.author.profilePicture ||
+					`https://i.pravatar.cc/300?u=${props.bleep.author._id}`
+				}
+				alt="profile picture"
+			/>
+			<div className={styles.bleepText}>
 				<Link to={`/bleeps/${props.bleep._id}`}>
-					<p>{props.bleep.text}</p>
+					<p className="{styles.bleepText}">{props.bleep.text}</p>
 				</Link>
-			</main>
-			<footer>
+			</div>
+
+			<div className={styles.metrics} aria-label="engagement">
+				<p>❤️ 8</p>
+				<p>🔁 100</p>
+				<p>💬 4</p>
+			</div>
+
+			<div className={styles.post}>
 				<p>{`posted on ${new Date(
 					props.bleep.createdAt
 				).toLocaleDateString()}`}</p>
-				<div>
-					<button onClick={() => props.handleUpdateLike(props.bleep._id)}>
-						like
-					</button>
-					{props.bleep.author._id === bleepr._id && (
-						<>
-							<Link role="button" to={`/bleeps/${props.bleep._id}/edit`}>
-								edit
-							</Link>
-							<button onClick={() => props.handleDeleteBleep(props.bleep._id)}>
-								delete
-							</button>
-						</>
-					)}
-				</div>
-			</footer>
+			</div>
+
+			<div className={styles.buttons}>
+				<a onClick={() => props.handleUpdateLike(props.bleep._id)}>like</a>
+				{props.bleep.author._id === bleepr._id && (
+					<>
+						<Link to={`/bleeps/${props.bleep._id}/edit`}>edit</Link>
+						<a onClick={() => props.handleDeleteBleep(props.bleep._id)}>
+							delete
+						</a>
+					</>
+				)}
+			</div>
 		</article>
 	);
 };
