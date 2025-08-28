@@ -76,6 +76,8 @@ const App = () => {
 		navigate(`/${bleeprId}/aboutMe`);
 	};
 
+
+
 	return (
 		<>
 			<NavBar bleeprId={bleepr?._id} />

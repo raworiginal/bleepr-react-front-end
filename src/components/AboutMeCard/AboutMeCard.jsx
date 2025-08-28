@@ -54,7 +54,6 @@ const AboutMeCard = (props) => {
           <p>Location: {profile?.location || "N/A"}</p>
           <p>Bio: {profile?.bio || "No bio"}</p>
           <p>Relationship Status: {profile?.relationshipStatus || "N/A"}</p>
-          <p>Open to: {profile?.openTo?.join(", ") || "N/A"}</p>
         </div>
 
         <div className={styles.aboutMeBox}>
