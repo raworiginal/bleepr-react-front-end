@@ -11,7 +11,7 @@ const ProtectedRoutes = (props) => {
 					<Link to="/bleeps/new">New Bleep</Link>
 				</li>
 				<li>
-					<Link to={`/${props.bleeprId}/aboutMe`}>My Profile</Link>
+					<Link to={`/${props.bleepr._id}/aboutMe`}>My Profile</Link>
 				</li>
 				<li>
 					<Link to={"/"} onClick={props.handleSignOut}>
