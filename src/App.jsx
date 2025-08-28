@@ -22,7 +22,6 @@ const App = () => {
 	const [bleeprs, setBleeprs] = useState([]);
 	const navigate = useNavigate();
 
-
 	useEffect(() => {
 		const fetchAllBleeps = async () => {
 			const bleepData = await bleepsService.index();
@@ -59,25 +58,26 @@ const App = () => {
 		navigate("/bleeps");
 	};
 
-	const handleUpdateLike = async (bleepId) => {
-		const likedBleep = await bleepsService.updateLike(props.bleep._id, bleepr._id);
-		setLikedCount(likedBleep.count);
-	}
+	const handleFavoriteBleep = async (bleepId) => {
+		const favoritedBleep = await bleepsService.favorite(bleepId);
+		console.log(bleepId);
+		// setLikedCount(likedBleep.count);
 
+	};
 
 	return (
 		<>
 			<NavBar bleeprId={bleepr?._id} />
 			<Routes>
 				<Route
-					path="/"
+					path="/bleeps"
 					element={
 						bleepr ? (
 							<BleepFeed
 								bleeps={bleeps}
 								handleDeleteBleep={handleDeleteBleep}
 								handleUpdateBleep={handleUpdateBleep}
-								handleUpdateLike={handleUpdateLike}
+								handleFavoriteBleep={handleFavoriteBleep}
 							/>
 						) : (
 							<Landing />
@@ -96,11 +96,22 @@ const App = () => {
 								/>
 							}
 						/>
-						<Route path="bleeps/new" element={<BleepForm handleAddBleep={handleAddBleep} />} />
+						<Route
+							path="bleeps/new"
+							element={<BleepForm handleAddBleep={handleAddBleep} />}
+						/>
 						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
-						<Route path="bleeps/:bleepId/edit" element={<BleepForm handleUpdateBleep={handleUpdateBleep} />} />
-						<Route path="/:bleeprId/aboutMe" element={<AboutMeCard bleeprs={bleeprs} />} />
+
+						<Route
+							path="bleeps/:bleepId/edit"
+							element={<BleepForm handleUpdateBleep={handleUpdateBleep} />}
+						/>
+						<Route
+							path="/:bleeprId/aboutMe"
+							element={<AboutMeCard bleeprs={bleeprs} />}
+						/>
 						<Route path="/:bleeprId/aboutMe/edit" element={<AboutMeForm />} />
+
 					</>
 				) : (
 					<>
