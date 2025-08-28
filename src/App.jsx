@@ -59,8 +59,10 @@ const App = () => {
 	};
 
 	const handleFavoriteBleep = async (bleepId) => {
-		const favoritedBleep = await bleepsService.favorite(bleepId);
-		console.log(bleepId);
+		await bleepsService.favorite(bleepId);
+		const favoritedBleep = await bleepsService.show(bleepId);
+		console.log(favoritedBleep);
+
 		// setLikedCount(likedBleep.count);
 	};
 
