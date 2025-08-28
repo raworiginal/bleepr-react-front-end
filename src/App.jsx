@@ -14,6 +14,7 @@ import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import BleepDetails from "./components/BleepDetails/BleepDetails";
 import AboutMeCard from "./components/AboutMeCard/AboutMeCard";
+import AboutMeForm from "./components/AboutMeForm/AboutMeForm";
 
 const App = () => {
 	const { bleepr } = useContext(BleeprContext);
@@ -30,7 +31,7 @@ const App = () => {
 		if (bleepr) fetchAllBleeps();
 	}, [bleepr]);
 
-		useEffect(() => {
+	useEffect(() => {
 		const fetchAllBleeprs = async () => {
 			const bleeprData = await bleeprService.index();
 			setBleeprs(bleeprData);
@@ -95,15 +96,11 @@ const App = () => {
 								/>
 							}
 						/>
-						<Route
-							path="bleeps/new"
-							element={<BleepForm handleAddBleep={handleAddBleep} />}
-						/>
+						<Route path="bleeps/new" element={<BleepForm handleAddBleep={handleAddBleep} />} />
 						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
-						<Route
-							path="bleeps/:bleepId/edit"
-							element={<BleepForm handleUpdateBleep={handleUpdateBleep} />} />
-						<Route path="/:bleeprId/aboutMe" element={<AboutMeCard bleeprs={bleeprs}/>} />
+						<Route path="bleeps/:bleepId/edit" element={<BleepForm handleUpdateBleep={handleUpdateBleep} />} />
+						<Route path="/:bleeprId/aboutMe" element={<AboutMeCard bleeprs={bleeprs} />} />
+						<Route path="/:bleeprId/aboutMe/edit" element={<AboutMeForm />} />
 					</>
 				) : (
 					<>

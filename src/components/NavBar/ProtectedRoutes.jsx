@@ -14,6 +14,9 @@ const ProtectedRoutes = (props) => {
 					<Link to={`/${props.bleepr._id}/aboutMe`}>My Profile</Link>
 				</li>
 				<li>
+					<Link to={`/${props.bleepr._id}/aboutMe/edit`}>edit profile</Link>
+				</li>
+				<li>
 					<Link to={"/"} onClick={props.handleSignOut}>
 						Sign Out
 					</Link>
