@@ -11,9 +11,9 @@ const index = async () => {
 			throw new Error(data.err);
 		}
 		return data;
-	} catch (err) {
+	} catch (error) {
 		console.log(error);
-		throw new Error(error);
+		// throw new Error(error);
 	}
 };
 
@@ -74,9 +74,9 @@ const deleteBleep = async (bleepId) => {
 	}
 };
 
-const updateLike = async (bleepId, bleeprId) => {
+const favorite = async (bleepId) => {
 	try {
-		const res = await fetch(`/bleeps/${bleepId}/liked-by/${bleeprId}`, {
+		const res = await fetch(`${BASE_URL}/${bleepId}/favorite`, {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -85,12 +85,13 @@ const updateLike = async (bleepId, bleeprId) => {
 		});
 
 		if (!res.ok) {
+			console.log(res);
 			throw new Error("Failed to update like");
 		}
 
 		return res.json();
 	} catch (error) {
-		console.log(error)
+		console.log(error);
 	}
 };
 
@@ -99,29 +100,38 @@ const createComment = async (bleepId, commentFormData) => {
 		const res = await fetch(`${BASE_URL}/${bleepId}/comments`, {
 			method: "POST",
 			headers: {
-				Authorization: `Bearer ${localStorage.getItem('token')}`,
-				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(commentFormData),
-		});	
+		});
 		return res.json();
 	} catch (error) {
-		console.log(error)
+		console.log(error);
 	}
 };
 
 const deleteComment = async (bleepId, commentId) => {
 	try {
 		const res = await fetch(`${BASE_URL}/${bleepId}/comments/${commentId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    return res.json();
+			method: "DELETE",
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+			},
+		});
+		return res.json();
 	} catch (error) {
-		console.log(error)
+		console.log(error);
 	}
-}
+};
 
-export { index, create, show, update, deleteBleep, updateLike,createComment, deleteComment };
+export {
+	index,
+	create,
+	show,
+	update,
+	deleteBleep,
+	favorite,
+	createComment,
+	deleteComment,
+};
