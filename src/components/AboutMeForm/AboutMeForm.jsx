@@ -1,83 +1,105 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useParams, Link } from "react-router";
 import * as bleeprService from "../../services/bleeprService";
 import styles from "./AboutMeForm.module.css";
 
 const AboutMeForm = (props) => {
-    const { profile } = props
-    const [name, setName] = useState("");
-    const [age, setAge] = useState("");
-    const [gender, setGender] = useState("");
-    const [location, setLocation] = useState("");
-    const [bio, setBio] = useState("")
-    const [openTo, setOpenTo] = useState([]);
-    const [notOpenTo, setNotOpenTo] = useState([]);
-    const [relationshipStatus, setRelationshipStatus] = useState([])
-    const [aboutMe, setAboutMe] = useState("");
+	const { bleeprId } = useParams();
+	const [formData, setFormData] = useState({
+		name: "",
+		age: "",
+		gender: "",
+		location: "",
+		bio: "",
+		openTo: [],
+		relationshipStatus: "single",
+		aboutMe: ""
+	});
 
+	const handleChange = (event) => {
+		setFormData({ ...formData, [event.target.name]: event.target.value });
+	};
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const updatedProfile = {
-            name,
-            age,
-            gender,
-            location,
-            bio,
-            openTo,
-            notOpenTo,
-            relationshipStatus,
-            aboutMe
-        }
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		props.handleUpdateAboutMe(bleeprId, formData)
+	}
 
-    };
+	// const handleCheckboxChange = () => {
+	// 	const updatedCheckedBoxes = 
+	// }
 
-    return (
-        <form className={styles.editForm} onSubmit={handleSubmit}>
-            <label>
-                Name:
-                <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
-            </label>
+	return (
+		<form className={styles.editForm} onSubmit={handleSubmit}>
+			<label>
+				Name:
+				<input type="text" value={formData.name} onChange={handleChange} />
+			</label>
 
-            <label>
-                Age:
-                <input type="number" value={age} onChange={(event) => setAge(event.target.value)} />
-            </label>
+			<label>
+				Age:
+				<input type="number" value={formData.age} onChange={handleChange} />
+			</label>
 
-            <label>
-                Gender:
-                <input type="text" value={gender} onChange={(event) => setGender(event.target.value)} />
-            </label>
+			<label>
+				Gender:
+				<input type="text" value={formData.gender} onChange={handleChange} />
+			</label>
 
-            <label>
-                Location:
-                <input type="text" value={location} onChange={(event) => setLocation(event.target.value)} />
-            </label>
+			<label>
+				Location:
+				<input type="text" value={formData.location} onChange={handleChange} />
+			</label>
 
-            <label>
-                Bio:
-                <textarea value={bio} onChange={(event) => setBio(event.target.value)} />
-            </label>
+			<label>
+				Bio:
+				<textarea value={formData.bio} onChange={handleChange} />
+			</label>
 
-            <label>
-                Relationship Status:
-                <select value={relationshipStatus} onChange={(event) => setRelationshipStatus(event.target.value)}>
-                    <option value="">Select...</option>
-                    <option value="single">Single</option>
-                    <option value="in a relationship">In a relationship</option>
-                    <option value="married">Married</option>
-                    <option value="it's complicated">It's complicated</option>
-                    <option value="open">Open</option>
-                </select>
-            </label>
+			<label>
+				Relationship Status:
+				<select value={formData.relationshipStatus} onChange={handleChange}>
+					<option value="">Select...</option>
+					<option value="single">Single</option>
+					<option value="in a relationship">In a relationship</option>
+					<option value="married">Married</option>
+					<option value="it's complicated">It's complicated</option>
+					<option value="open">Open</option>
+				</select>
+			</label>
+			{/* <fieldset>
+				<legend>Open To:</legend>
+				{["networking", "dating", "making-friends", "mentoring"].map(option, index => (
+					<label key={option}>
+						<input type="checkbox"
 
-            <label>
-                About Me:
-                <textarea value={aboutMe} onChange={(event) => setAboutMe(event.target.value)} />
-            </label>
+</label>
+				))}
+				<label>
+					<input type="checkbox" name="networking" value="networking" checked={formData.openTo} />
+					networking
+				</label>
+				<label>
+					<input type="checkbox" name="dating" value="dating" checked={formData.openTo} />
+					dating
+				</label>
+				<label>
+					<input type="checkbox" name="making-friends" value="making-friends" checked={formData.openTo} />
+					making friends
+				</label>
+				<label>
+					<input type="checkbox" name="mentoring" value="mentoring" checked={formData.openTo} />
+					mentoring
+				</label>
+			</fieldset> */}
+			<label>
+				About Me:
+				<textarea value={formData.aboutMe} onChange={handleChange} />
+			</label>
 
-            <button type="submit">Save</button>
-        </form>
-    );
+			<button type="submit">Save</button>
+		</form>
+	);
 }
 
 
