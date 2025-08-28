@@ -1,4 +1,8 @@
+
 /* Profile Card + About Me */
+
+/* Parent flex container: top half of profile */
+
 .myProfileContainer .profilePageTopHalf {
   display: flex;
   gap: 20px;
@@ -6,7 +10,11 @@
   margin-top: 20px;
 }
 
+
 /* Profile Image */
+
+/* Profile card box */
+
 .myProfileContainer .profileBox {
   width: 250px; 
   padding: 15px;
