@@ -36,33 +36,37 @@ const AboutMeCard = (props) => {
 
 	return (
 		<div className={styles.myProfileContainer}>
-      <div className={styles.profilePageTopHalf}>
-        <div className={styles.profileBox}>
-          <img
-            width={150}
-            src={profile?.profilePicture || `https://i.pravatar.cc/300?u=${profile?._id}`}
-            alt="profile picture"
-          />
-          <h2>{profile?.username || "User not found"}</h2>
-          {showOnlineNow ? (
-            <span className={styles.onlineNow}>Online Now</span>
-          ) : (
-            <span className={styles.offlineMsg}>{offlineMsg || "Offline"}</span>
-          )}
-          <p>Age: {profile?.age || "N/A"}</p>
-          <p>Gender: {profile?.gender || "N/A"}</p>
-          <p>Location: {profile?.location || "N/A"}</p>
-          <p>Bio: {profile?.bio || "No bio"}</p>
-          <p>Relationship Status: {profile?.relationshipStatus || "N/A"}</p>
-        </div>
+			<div className={styles.profilePageTopHalf}>
+				
+				<img
+					className={styles.profileImage}
+					src={profile?.profilePicture || `https://i.pravatar.cc/300?u=${profile?._id}`}
+					alt="profile picture"
+				/>
 
-        <div className={styles.aboutMeBox}>
-          <h3>About Me</h3>
-          <p>{profile?.aboutMe || "No additional info"}</p>
-        </div>
-      </div>
-    </div>
-  );
+			
+				<div className={styles.infoColumn}>
+					<h2>{profile?.username || "User not found"}</h2>
+					{showOnlineNow ? (
+						<span className={styles.onlineNow}>Online Now</span>
+					) : (
+						<span className={styles.offlineMsg}>{offlineMsg || "Offline"}</span>
+					)}
+					<p>Age: {profile?.aboutMe?.age || "N/A"}</p>
+					<p>Gender: {profile?.aboutMe?.gender || "N/A"}</p>
+					<p>Location: {profile?.aboutMe?.location || "N/A"}</p>
+					<p>Relationship Status: {profile?.aboutMe?.relationshipStatus || "N/A"}</p>
+				</div>
+
+			
+				<div className={styles.aboutMeBox}>
+					<h3>About Me</h3>
+					<p>{profile?.aboutMe?.bio || "No additional info"}</p>
+				</div>
+			</div>
+		</div>
+
+	);
 };
 
 export default AboutMeCard;
