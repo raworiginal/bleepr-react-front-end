@@ -1,42 +1,70 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router";
-import * as bleeprService from "../../services/bleeprService"
 import { BleeprContext } from "../../contexts/BleeprContext";
+import styles from "./AboutMeCard.module.css"
 
 
 const AboutMeCard = (props) => {
 	const { bleepr } = useContext(BleeprContext);
 	const [aboutMe, setAboutMe] = useState(null);
 	const { bleeprId } = useParams();
+	const [profile, setProfile] = useState(null);
+	const [offlineMsg, setOfflineMsg] = useState("");
 
-let result 
-props.bleeprs.map((bleepr) => {
-	if (bleeprId === bleepr._id) {
-		console.log(bleepr)
-		result = bleepr;
+	useEffect(() => {
+		let currentProfile;
+		props.bleeprs.map((bleepr) => {
+			if (bleeprId === bleepr._id) {
+				currentProfile = bleepr;
+			}
+		});
+
+		if (currentProfile) {
+			setProfile(currentProfile)
+			setOfflineMsg(currentProfile.offlineMsg || "");
+		} else {
+			setProfile(null);
+			setOfflineMsg("");
+		}
+	}, [props.bleeprs, bleeprId]);
+
+	let showOnlineNow = false;
+	if (profile && bleepr) {
+		const isSignedIn = bleepr._id === profile._id;
+		showOnlineNow = isSignedIn;
 	}
-});
-
-
 
 	return (
-		<div>
-			<article class="aboutMe">
-			<h1>{props.bleeprs.username}</h1>
-	
-			<h1>{result ? result.username : "User not found"}</h1>
-        <p>{result ? result.aboutMe : ""}</p>
-					<img
-					width={64}
-					src={
-						props.bleeprs.profilePicture ||
-						`https://i.pravatar.cc/300?u=${props.bleeprs._id}`
-					}
-					alt="profile picture"
-				/>
-				</article>
-		</div>
-	);
-}
+		<div className={styles.myProfileContainer}>
+      <div className={styles.profilePageTopHalf}>
+        <div className={styles.profileBox}>
+          <img
+            width={150}
+            src={profile?.profilePicture || `https://i.pravatar.cc/300?u=${profile?._id}`}
+            alt="profile picture"
+          />
+          <h2>{profile?.username || "User not found"}</h2>
+          {showOnlineNow ? (
+            <span className={styles.onlineNow}>Online Now</span>
+          ) : (
+            <span className={styles.offlineMsg}>{offlineMsg || "Offline"}</span>
+          )}
+          <p>Age: {profile?.age || "N/A"}</p>
+          <p>Gender: {profile?.gender || "N/A"}</p>
+          <p>Location: {profile?.location || "N/A"}</p>
+          <p>Bio: {profile?.bio || "No bio"}</p>
+          <p>Relationship Status: {profile?.relationshipStatus || "N/A"}</p>
+          <p>Open to: {profile?.openTo?.join(", ") || "N/A"}</p>
+          <p>Not Open to: {profile?.notOpenTo?.join(", ") || "N/A"}</p>
+        </div>
+
+        <div className={styles.aboutMeBox}>
+          <h3>About Me</h3>
+          <p>{profile?.aboutMe || "No additional info"}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default AboutMeCard;

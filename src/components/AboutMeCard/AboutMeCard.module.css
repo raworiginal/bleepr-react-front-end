@@ -1,0 +1,62 @@
+/* Parent flex container: top half of profile */
+.myProfileContainer .profilePageTopHalf {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+/* Profile card box */
+.myProfileContainer .profileBox {
+  width: 250px; 
+  padding: 15px;
+  border: 2px solid #aaa; 
+  border-radius: 8px;
+  background-color: #e0e0e0; 
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.2); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Profile image */
+.myProfileContainer .profileBox img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; /* circle */
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+}
+
+/* Text styling */
+.myProfileContainer .profileBox h2 {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.myProfileContainer .profileBox p {
+  font-size: 14px;
+  margin: 2px 0;
+}
+
+/* Online/Offline text */
+.myProfileContainer .onlineNow {
+  color: orange;
+  font-weight: bold;
+}
+
+.myProfileContainer .offlineMsg {
+  color: gray;
+}
+
+/* About Me box */
+.myProfileContainer .aboutMeBox {
+  flex: 1;
+  padding: 15px;
+  border: 2px solid #aaa;
+  border-radius: 8px;
+  background-color: #fefefe;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
