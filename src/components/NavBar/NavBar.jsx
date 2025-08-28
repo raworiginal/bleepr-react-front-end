@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 import ProtectedRoutes from "./ProtectedRoutes";
 import UnprotectedRoutes from "./UnprotectedRoutes";
+import ColorSchemeSwitcher from "../ColorSchemeSwitcher/ColorSchemeSwitcher"
+
 import styles from "./NavBar.module.css";
 
 
@@ -27,6 +29,7 @@ const NavBar = () => {
           />
         </li>
       </ul>
+      <ColorSchemeSwitcher className="contrast" />
       {bleepr ? (
         <ProtectedRoutes bleepr={bleepr} handleSignOut={handleSignOut} />
       ) : (

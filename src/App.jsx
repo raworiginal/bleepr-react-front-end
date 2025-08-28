@@ -15,7 +15,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import BleepDetails from "./components/BleepDetails/BleepDetails";
 import MyProfile from "./components/MyProfile/MyProfile";
 import AboutMeForm from "./components/AboutMeForm/AboutMeForm";
-
+import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
@@ -80,6 +80,7 @@ const App = () => {
 
 	return (
 		<>
+			<ThemeProvider> 
 			<NavBar bleeprId={bleepr?._id} />
 			<Routes>
 				<Route
@@ -87,48 +88,50 @@ const App = () => {
 					element={
 						bleepr ? (
 							<BleepFeed
-								bleeps={bleeps}
-								handleDeleteBleep={handleDeleteBleep}
-								handleUpdateBleep={handleUpdateBleep}
-								handleFavoriteBleep={handleFavoriteBleep}
+							bleeps={bleeps}
+							handleDeleteBleep={handleDeleteBleep}
+							handleUpdateBleep={handleUpdateBleep}
+							handleFavoriteBleep={handleFavoriteBleep}
 							/>
 						) : (
 							<Landing />
 						)
 					}
-				/>
+					/>
 				{bleepr ? (
 					<>
 						<Route
 							path="/bleeps"
 							element={
 								<BleepFeed
-									bleeps={bleeps}
-									handleDeleteBleep={handleDeleteBleep}
-									handleUpdateBleep={handleUpdateBleep}
+								bleeps={bleeps}
+								handleDeleteBleep={handleDeleteBleep}
+								handleUpdateBleep={handleUpdateBleep}
 								/>
 							}
-						/>
+							/>
 						<Route
 							path="bleeps/new"
 							element={<BleepForm handleAddBleep={handleAddBleep} />}
-						/>
+							/>
 						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
 
 						<Route
 							path="bleeps/:bleepId/edit"
 							element={<BleepForm handleUpdateBleep={handleUpdateBleep} />}
-						/>
+							/>
 						<Route
 							path="/:bleeprId/aboutMe"
-							element={<MyProfile bleeprs={bleeprs} />}
-						/>
+
+							element={<AboutMeCard bleeprs={bleeprs} />}
+							/>
+
 						<Route
 							path="/:bleeprId/aboutMe/edit"
 							element={
 								<AboutMeForm handleUpdateAboutMe={handleUpdateAboutMe} />
 							}
-						/>
+							/>
 					</>
 				) : (
 					<>
@@ -137,6 +140,7 @@ const App = () => {
 					</>
 				)}
 			</Routes>
+				</ThemeProvider>
 		</>
 	);
 };
