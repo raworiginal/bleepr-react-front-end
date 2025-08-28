@@ -125,7 +125,7 @@ const deleteComment = async (bleepId, commentId) => {
 }
 const updateComment = async (bleepId, commentId, commentFormData) => {
   try {
-    const res = await fetch(`${BACKEND_URL}/bleeps/${bleepId}/comments/${commentId}`, {
+    const res = await fetch(`${BASE_URL}/${bleepId}/comments/${commentId}`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
