@@ -125,22 +125,22 @@ const deleteComment = async (bleepId, commentId) => {
 	}
 };
 const updateComment = async (bleepId, commentId, commentFormData) => {
-	try {
-		const res = await fetch(
-			`${BACKEND_URL}/bleeps/${bleepId}/comments/${commentId}`,
-			{
-				method: "PUT",
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem("token")}`,
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(commentFormData),
-			}
-		);
-		return res.json();
-	} catch (error) {
-		console.log(error);
-	}
+
+  try {
+    const res = await fetch(`${BASE_URL}/${bleepId}/comments/${commentId}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(commentFormData),
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+
+	
 };
 
 export {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import BleepCard from "../BleepCard/BleepCard";
 import * as BleepsService from "../../services/bleepsService";
 import CommentForm from "../CommentForm/CommentForm";
@@ -7,12 +7,14 @@ import { BleeprContext } from "../../contexts/BleeprContext";
 import CommentCard from "../CommentCard/CommentCard";
 
 const BleepDetails = (props) => {
-  const { bleepId } = useParams();
+	const navigate = useNavigate()
+	const { bleepId } = useParams();
   const [bleep, setBleep] = useState(null);
   const { bleepr } = useContext(BleeprContext);
   const [toggle, setToggle] = useState(true);
   const [formData, setFormData] = useState({ text: "" });
-	const[selected,setSelected] = useState(null)
+	const [selected, setSelected] = useState(null)
+	const [isBeingEdited, setIsBeingEdited] = useState(false);
 	
 
 	useEffect(() => {
@@ -41,7 +43,8 @@ const BleepDetails = (props) => {
       bleepId,
       commentId,
       commentFormData
-    );
+		);
+		setBleep({ ...bleep, comments: [...bleep.comments, updatedComment] });
   };
 	
 	const handleSelect = (comment)=> {
@@ -50,12 +53,15 @@ const BleepDetails = (props) => {
 
   const handleSubmit = (event) => {
 		event.preventDefault();
+		console.log(selected)
 		if (selected) {
-			handleUpdateComment(bleepId, commentId, commentFormData);
+			handleUpdateComment(bleepId, selected._id, formData);
+			setIsBeingEdited(false)
 		} else {
-			handleAddComment(props.formData);
+			handleAddComment(formData);
 			setFormData({ text: "" });
 		}
+		
   };
 
 
@@ -88,7 +94,11 @@ const BleepDetails = (props) => {
             formData={formData}
 						handleChange={handleChange}
 						handleUpdateComment={handleUpdateComment}
-            handleSubmit={handleSubmit}
+						handleSubmit={handleSubmit}
+						selected={selected}
+						setSelected={setSelected}
+						isBeingEdited={isBeingEdited}
+						setIsBeingEdited={setIsBeingEdited}
           />
         ))}
       </section>
