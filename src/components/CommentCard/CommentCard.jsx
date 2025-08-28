@@ -20,10 +20,6 @@ const [isBeingEdited, setIsBeingEdited] = useState(false);
   };
 
 
-  const handleUpdateComment = async (bleepId, commentId, commentData) => {
-    console.log(bleepId, commentId, commentData);
-  };
-
   const toggleEdit = () => {
     setIsBeingEdited(true);
   };

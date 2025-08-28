@@ -35,16 +35,26 @@ const BleepDetails = (props) => {
     setFormData({ ...props.formData, [event.target.name]: event.target.value });
 	};
 	
-	const handleSelect = (props.formData)=> {
+	const handleUpdateComment = async (bleepId, commentId, commentFormData) => {
+    console.log(bleepId, commentId, commentFormData);
+    const updatedComment = await BleepsService.updateComment(
+      bleepId,
+      commentId,
+      commentFormData
+    );
+  };
 	
+	const handleSelect = (comment)=> {
+		setSelected(comment)
 	}
 
   const handleSubmit = (event) => {
 		event.preventDefault();
 		if (selected) {
-			props.handleAddComment(props.formData);
+			handleUpdateComment(bleepId, commentId, commentFormData);
 		} else {
-			props.setFormData({ text: "" });
+			handleAddComment(props.formData);
+			setFormData({ text: "" });
 		}
   };
 
@@ -71,12 +81,13 @@ const BleepDetails = (props) => {
         {bleep.comments?.map((comment) => (
           <CommentCard
             key={comment._id}
-            comment={comment}
+						comment={comment}
             bleepId={bleepId}
             bleep={bleep}
             setBleep={setBleep}
             formData={formData}
-            handleChange={handleChange}
+						handleChange={handleChange}
+						handleUpdateComment={handleUpdateComment}
             handleSubmit={handleSubmit}
           />
         ))}

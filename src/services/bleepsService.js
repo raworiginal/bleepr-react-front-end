@@ -123,7 +123,7 @@ const deleteComment = async (bleepId, commentId) => {
 		console.log(error)
 	}
 }
-const updateComment = async (bleepId, commentId, commentData) => {
+const updateComment = async (bleepId, commentId, commentFormData) => {
   try {
     const res = await fetch(`${BACKEND_URL}/bleeps/${bleepId}/comments/${commentId}`, {
       method: 'PUT',
