@@ -1,53 +1,53 @@
 .bleepCard {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-areas:
-		"user . post "
-		"pic btext btext"
-		"pic btext btext"
-		"metrics buttons buttons";
-
-	/* place-items: center; */
-}
-.buttons {
-	grid-area: buttons;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	max-width: 512px;
+	padding: 0.25em;
+}
+.leftColumn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 256px;
+	margin: 0.25em 0.5em;
 }
 .username {
+	text-align: center;
+}
+.avatarFrame {
+	height: 80%;
 	display: flex;
-	font-size: 1.3em;
-	grid-area: user;
-	align-self: center;
-	justify-content: center;
 }
 .avatar {
-	grid-area: pic;
-	width: 128px;
-
-	align-self: center;
-	justify-self: center;
-}
-.bleepText {
-	background-color: white;
-	grid-area: btext;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	width: fit-content;
 }
 .metrics {
-	grid-area: metrics;
 	display: flex;
-	align-self: end;
-	margin: auto auto;
-	align-self: center;
-	justify-self: center;
+	margin: 0;
+}
+
+.rightColumn {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0.25em 0.5em;
+}
+
+.bleepText {
+	height: 80%;
+	background-color: white;
+}
+
+.buttons {
+	display: flex;
 	justify-content: space-around;
 }
 
 .post {
-	grid-area: post;
+	text-align: right;
 }
+
 a {
 	text-decoration: none;
 }
