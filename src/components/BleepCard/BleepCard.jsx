@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 import { Link } from "react-router";
 import styles from "./BleepCard.module.css";
+import * as bleepsService from "../../services/bleepsService";
+
 import {
 	HiOutlineHeart,
 	HiOutlineChat,
@@ -11,8 +13,9 @@ import {
 } from "react-icons/hi";
 
 const BleepCard = (props) => {
-	// console.log(props.handleFavoriteBleep);
 	const { bleepr } = useContext(BleeprContext);
+	const [bleep, setBleep] = useState(props.bleep);
+	console.log(bleep);
 
 	return (
 		<article className={styles.bleepCard}>
@@ -44,7 +47,10 @@ const BleepCard = (props) => {
 						<span> {props.bleep.favoritedBy.length}</span>
 					</span>
 					<span>
-						<HiOutlineChat /> {props.bleep.comments.length}
+						<Link to={`/bleeps/${props.bleep._id}`}>
+							<HiOutlineChat />
+						</Link>
+						<span> {props.bleep.comments.length}</span>
 					</span>
 					{props.bleep.author._id === bleepr._id && (
 						<>
