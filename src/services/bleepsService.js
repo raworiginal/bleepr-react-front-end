@@ -152,4 +152,5 @@ export {
 	favorite,
 	createComment,
 	deleteComment,
+	updateComment,
 };

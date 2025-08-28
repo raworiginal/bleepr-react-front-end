@@ -1,7 +1,13 @@
 import { useState, useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 import * as BleepsService from "../../services/bleepsService";
-
+import {
+  HiOutlineHeart,
+  HiOutlineChat,
+  HiOutlineTrash,
+  HiOutlinePencil,
+  HiHeart,
+} from "react-icons/hi";
 const CommentCard = (props) => {
   
   const { bleepr } = useContext(BleeprContext);
@@ -10,7 +16,7 @@ const CommentCard = (props) => {
   const handleDeleteComment = async (commentId) => {
     const deletedComment = await BleepsService.deleteComment(
       props.bleepId,
-      props.commentId
+      commentId
     );
     props.setBleep({
       ...props.bleep,
@@ -37,9 +43,6 @@ console.log(props)
 
       {props.comment.author._id === bleepr._id && (
         <>
-          <button onClick={() => handleDeleteComment(props.comment._id)}>
-            Delete
-          </button>
           {props.isBeingEdited === true ? (
             <form onSubmit={props.handleSubmit}>
               <input
@@ -56,7 +59,13 @@ console.log(props)
           ) : (
             <p>{props.comment.text}</p>
           )}
-          <button onClick={() => toggleEdit(props.comment)}>Edit</button>
+          <button onClick={() => toggleEdit(props.comment)}>
+            <HiOutlinePencil />
+          </button>
+
+          <button onClick={() => handleDeleteComment(props.comment._id)}>
+            <HiOutlineTrash />
+          </button>
         </>
       )}
     </article>
