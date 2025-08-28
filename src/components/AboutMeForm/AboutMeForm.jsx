@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router";
-import * as bleeprService from "../../services/bleeprService";
+import { useParams } from "react-router";
+
 import styles from "./AboutMeForm.module.css";
 
 const AboutMeForm = (props) => {

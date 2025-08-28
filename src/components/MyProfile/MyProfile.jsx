@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router";
 import { BleeprContext } from "../../contexts/BleeprContext";
-import styles from "./AboutMeCard.module.css"
+import styles from "./MyProfile.module.css";
 
 
-const AboutMeCard = (props) => {
+const MyProfile = (props) => {
 	const { bleepr } = useContext(BleeprContext);
 	const [aboutMe, setAboutMe] = useState(null);
 	const { bleeprId } = useParams();
@@ -69,4 +69,4 @@ const AboutMeCard = (props) => {
 	);
 };
 
-export default AboutMeCard;
+export default MyProfile;
