@@ -65,6 +65,8 @@ const App = () => {
 
 	};
 
+
+
 	return (
 		<>
 			<NavBar bleeprId={bleepr?._id} />
