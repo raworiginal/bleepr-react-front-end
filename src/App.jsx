@@ -125,7 +125,7 @@ const App = () => {
 						<Route
 							path="/:bleeprId/aboutMe"
 
-							element={<AboutMeCard bleeprs={bleeprs} />}
+							element={<MyProfile bleeprs={bleeprs} />}
 							/>
 
 						<Route
