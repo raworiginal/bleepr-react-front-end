@@ -3,7 +3,7 @@ import { BleeprContext } from "../../contexts/BleeprContext";
 import { Link, useNavigate } from "react-router";
 import styles from "./BleepCard.module.css";
 import * as bleepsService from "../../services/bleepsService";
-
+import profanityFilter from "../../services/profanityFilter";
 import {
 	HiOutlineHeart,
 	HiOutlineChat,
@@ -47,10 +47,7 @@ const BleepCard = (props) => {
 					{bleep.text.split(" ").map((word, index) => {
 						if (word[0] === "#")
 							return (
-								<Link
-									onClick={() => props.setQuery(word)}
-									key={index}
-									to={`/bleeps/t/${word.slice(1)}`}>
+								<Link key={index} to={`/bleeps/t/${word.slice(1)}`}>
 									{`${word}`}{" "}
 								</Link>
 							);
