@@ -22,9 +22,9 @@ const BleepCard = (props) => {
 		navigate(`/bleeps/${bleep._id}`);
 	};
 	const handleFavoriteBleep = async (bleepId) => {
+		await bleepsService.favorite(bleepId);
 		const favoritedBleep = await bleepsService.show(bleepId);
 		setBleep(favoritedBleep);
-		await bleepsService.favorite(bleepId);
 	};
 
 	return (
@@ -47,7 +47,10 @@ const BleepCard = (props) => {
 					{bleep.text.split(" ").map((word, index) => {
 						if (word[0] === "#")
 							return (
-								<Link key={index} to={`/bleeps/${word}`}>
+								<Link
+									onClick={() => props.setQuery(word)}
+									key={index}
+									to={`/bleeps/t/${word.slice(1)}`}>
 									{`${word}`}{" "}
 								</Link>
 							);

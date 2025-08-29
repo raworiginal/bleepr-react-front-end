@@ -1,16 +1,29 @@
-import { Link } from "react-router";
+import { useParams } from "react-router";
 import BleepCard from "../BleepCard/BleepCard";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 
 const BleepFeed = (props) => {
-	// console.log(props.bleeps);
 	const { bleepr } = useContext(BleeprContext);
+	const { tag } = useParams();
+	const [displayedBleeps, setDisplayedBleeps] = useState(props.bleeps);
+
+	useEffect(() => {
+		if (tag) {
+			const filteredBleeps = props.bleeps.filter((bleep) => {
+				return bleep.text.includes(`#${tag}`);
+			});
+			setDisplayedBleeps(filteredBleeps);
+		} else {
+			setDisplayedBleeps(props.bleeps);
+		}
+	}, [props.bleeps, tag]);
+
 	if (!props.bleeps.length)
 		return <span aria-busy="true">bleepin' around...</span>;
 	return (
 		<main className="container feed">
-			{props.bleeps.map((bleep) => (
+			{displayedBleeps.map((bleep) => (
 				<BleepCard
 					key={bleep._id}
 					bleep={bleep}
