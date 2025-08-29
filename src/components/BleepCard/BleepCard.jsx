@@ -1,9 +1,9 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 import { Link, useNavigate } from "react-router";
 import styles from "./BleepCard.module.css";
 import * as bleepsService from "../../services/bleepsService";
-import profanityFilter from "../../services/profanityFilter";
+import profanityFilter from "../../services/profanityService";
 
 import {
 	HiOutlineHeart,
@@ -27,12 +27,19 @@ const BleepCard = (props) => {
 		const favoritedBleep = await bleepsService.show(bleepId);
 		setBleep(favoritedBleep);
 	};
-	const censorBleep = async () => {
-		const censoredBleep = await profanityFilter(bleep.text);
-		// console.log(censoredBleep.result);
-	};
-	console.log(bleep);
-	censorBleep();
+
+	useEffect(() => {
+		const censorBleep = async () => {
+			try {
+				const censoredBleep = await profanityFilter(props.bleep.text);
+				setBleep({ ...props.bleep, text: censoredBleep.result });
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		censorBleep();
+	}, [bleep]);
+
 	return (
 		<article className={styles.bleepCard}>
 			<div className={styles.topRow}>
