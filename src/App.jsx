@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useContext, useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router"; // Import React Router
+import { Routes, Route, useNavigate, Navigate, useParams } from "react-router"; // Import React Router
 import { BleeprContext } from "./contexts/BleeprContext";
 import BleepFeed from "./components/BleepFeed/BleepFeed";
 import * as bleepsService from "./services/bleepsService";
@@ -16,16 +16,28 @@ import BleepDetails from "./components/BleepDetails/BleepDetails";
 import MyProfile from "./components/MyProfile/MyProfile";
 import AboutMeForm from "./components/AboutMeForm/AboutMeForm";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";
+
 const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
+	const [displayedBleeps, setDisplayedBleeps] = useState([]);
+	const [query, setQuery] = useState("");
 	const [bleeprs, setBleeprs] = useState([]);
 	const navigate = useNavigate();
+	const { tag } = useParams();
+
+	const filterBleeps = (query) => {
+		const filteredBleeps = bleeps.filter((bleep) => {
+			return bleep.text.includes(query);
+		});
+		setDisplayedBleeps(filteredBleeps);
+	};
 
 	useEffect(() => {
 		const fetchAllBleeps = async () => {
 			const bleepData = await bleepsService.index();
 			setBleeps(bleepData);
+			setDisplayedBleeps(bleepData);
 		};
 		if (bleepr) fetchAllBleeps();
 	}, [bleepr]);
@@ -96,6 +108,7 @@ const App = () => {
 								element={
 									<BleepFeed
 										bleeps={bleeps}
+										setQuery={setQuery}
 										handleDeleteBleep={handleDeleteBleep}
 										handleUpdateBleep={handleUpdateBleep}
 									/>
@@ -106,7 +119,16 @@ const App = () => {
 								element={<BleepForm handleAddBleep={handleAddBleep} />}
 							/>
 							<Route path="bleeps/:bleepId" element={<BleepDetails />} />
-
+							<Route
+								path="/bleeps/t/:tag"
+								element={
+									<BleepFeed
+										bleeps={bleeps}
+										handleDeleteBleep={handleDeleteBleep}
+										handleUpdateBleep={handleUpdateBleep}
+									/>
+								}
+							/>
 							<Route
 								path="bleeps/:bleepId/edit"
 								element={<BleepForm handleUpdateBleep={handleUpdateBleep} />}
