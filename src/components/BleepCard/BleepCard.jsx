@@ -28,18 +28,6 @@ const BleepCard = (props) => {
 		setBleep(favoritedBleep);
 	};
 
-	useEffect(() => {
-		const censorBleep = async () => {
-			try {
-				const censoredBleep = await profanityFilter(props.bleep.text);
-				setBleep({ ...props.bleep, text: censoredBleep.result });
-			} catch (error) {
-				console.log(error);
-			}
-		};
-		censorBleep();
-	}, [bleep]);
-
 	return (
 		<article className={styles.bleepCard}>
 			<div className={styles.topRow}>
