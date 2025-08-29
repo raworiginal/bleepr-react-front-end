@@ -27,7 +27,7 @@ const aboutMe = async (bleeprId) => {
 			throw new Error(`HTTP error! Status: ${res.status}`);
 		}
 
-			const data = await res.json();
+		const data = await res.json();
 
 		if (data.error) {
 			throw new Error(data.error);
@@ -43,7 +43,7 @@ const aboutMe = async (bleeprId) => {
 const editAboutMe = async (bleeprId, aboutMeData) => {
 	try {
 		const res = await fetch(`${BASE_URL}/${bleeprId}/edit`, {
-			method: "PUT", 
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -55,7 +55,7 @@ const editAboutMe = async (bleeprId, aboutMeData) => {
 			throw new Error(`HTTP error! Status: ${res.status}`);
 		}
 
-			const data = await res.json();
+		const data = await res.json();
 
 		if (data.error) {
 			throw new Error(data.error);
@@ -68,27 +68,11 @@ const editAboutMe = async (bleeprId, aboutMeData) => {
 	}
 };
 
-const searchForBleeprs = async (bleeprId) => {
-		try {
-		const res = await fetch(`${BASE_URL}/${bleeprId}`, {
-			headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-		});
-		const data = await res.json();
-
-		if (data.err) {
-			throw new Error(data.err);
-		}
-		return data;
-	} catch (error) {
-		console.log(error);
-		throw new Error(error);
-	}
-}
 
 const editFriend = async (bleeprId) => {
-		try {
+	try {
 		const res = await fetch(`${BASE_URL}/${bleeprId}/friend`, {
-			method: "PUT", 
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -99,7 +83,7 @@ const editFriend = async (bleeprId) => {
 			throw new Error(`HTTP error! Status: ${res.status}`);
 		}
 
-			const data = await res.json();
+		const data = await res.json();
 
 		if (data.error) {
 			throw new Error(data.error);
@@ -112,4 +96,4 @@ const editFriend = async (bleeprId) => {
 	}
 }
 
-export { index, aboutMe, editAboutMe, searchForBleeprs, editFriend };
+export { index, aboutMe, editAboutMe, editFriend };

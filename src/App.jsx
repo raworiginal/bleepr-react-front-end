@@ -16,6 +16,7 @@ import BleepDetails from "./components/BleepDetails/BleepDetails";
 import MyProfile from "./components/MyProfile/MyProfile";
 import AboutMeForm from "./components/AboutMeForm/AboutMeForm";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";
+import BleeprList from "./components/BleeprList/BleeprList.jsx";
 
 const App = () => {
 	const { bleepr } = useContext(BleeprContext);
@@ -70,6 +71,11 @@ const App = () => {
 
 		navigate(`/${bleeprId}/aboutMe`);
 	};
+	
+	const handleUpdateFriends = async (friendId) => {
+		const updatedBleepr = await bleepsService.editFriend(friendId)
+		setBleeprs(updatedBleepr);
+	}
 
 	return (
 		<>
@@ -77,13 +83,12 @@ const App = () => {
 				<NavBar bleeprId={bleepr?._id} />
 				<Routes>
 					<Route
-						path="/bleeps"
+						path="/"
 						element={
 							bleepr ? (
-								<BleepFeed
-									bleeps={bleeps}
-									handleDeleteBleep={handleDeleteBleep}
-									handleUpdateBleep={handleUpdateBleep}
+								<BleeprList
+									bleeprs={bleeprs}
+									
 								/>
 							) : (
 								<Landing />
