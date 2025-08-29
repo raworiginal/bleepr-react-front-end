@@ -64,6 +64,22 @@ const MyProfile = (props) => {
 					<p>{profile?.aboutMe?.bio || "No additional info"}</p>
 				</div>
 			</div>
+			
+			<div>
+				<h2>Friends</h2>
+				{profile?.friends?.length > 0 ? (
+					profile.friends.map(friend => (
+						<div key={friend._id}>
+							<img src={friend.profilePicture || `https://i.pravatar.cc/300?u=${friend?._id}`}
+							alt={friend.username}
+							/>
+							<p>{friend.username}</p>
+							</div>
+					))
+				) : (
+					<p>No friends yet</p>
+				)}
+			</div>
 		</div>
 
 	);
