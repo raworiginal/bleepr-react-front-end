@@ -56,10 +56,10 @@
 	text-align: right;
 }
 
-.bleepText a {
+a {
 	text-decoration: none;
 }
 
-a:hover {
+.metic:hover {
 	cursor: pointer;
 }

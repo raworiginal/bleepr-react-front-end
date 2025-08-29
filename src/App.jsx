@@ -20,7 +20,6 @@ const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
 	const [bleeprs, setBleeprs] = useState([]);
-	const [favoritedBleep, setFavoritedBleep] = useState(null);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -42,7 +41,7 @@ const App = () => {
 	const handleAddBleep = async (bleepFormData) => {
 		const newBleep = await bleepsService.create(bleepFormData);
 		setBleeps([newBleep, ...bleeps]);
-		navigate("/");
+		navigate("/bleeps");
 	};
 
 	const handleUpdateBleep = async (bleepId, bleepFormData) => {

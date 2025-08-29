@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import styles from "./BleepCard.module.css";
 import * as bleepsService from "../../services/bleepsService";
 
@@ -14,13 +14,17 @@ import {
 
 const BleepCard = (props) => {
 	const { bleepr } = useContext(BleeprContext);
+	const navigate = useNavigate();
 	const [bleep, setBleep] = useState(props.bleep);
 
+	const handleCardClick = (event) => {
+		if (event.target.closest("a")) return;
+		navigate(`/bleeps/${bleep._id}`);
+	};
 	const handleFavoriteBleep = async (bleepId) => {
-		await bleepsService.favorite(bleepId);
 		const favoritedBleep = await bleepsService.show(bleepId);
 		setBleep(favoritedBleep);
-		// setLikedCount(likedBleep.count);
+		await bleepsService.favorite(bleepId);
 	};
 
 	return (
@@ -34,34 +38,43 @@ const BleepCard = (props) => {
 					}
 					alt="profile picture"
 				/>
-
 				<div className={styles.username}>
 					<span>{`@${props.bleep.author.username}`}</span>
 				</div>
 			</div>
-			<main className={styles.bleepText}>
-				<Link to={`/bleeps/${bleep._id}`}>
-					<p className="{styles.bleepText}">{bleep.text}</p>
-				</Link>
+			<main onClick={handleCardClick} className={styles.bleepText}>
+				<p className={styles.bleepText}>
+					{bleep.text.split(" ").map((word, index) => {
+						if (word[0] === "#")
+							return (
+								<Link key={index} to={`/bleeps/${word}`}>
+									{`${word}`}{" "}
+								</Link>
+							);
+						else return <span key={index}>{word} </span>;
+					})}
+				</p>
 			</main>
 			<div className={styles.bottomRow}>
 				<div className={styles.buttons}>
-					<span className="styles.favorited">
-						<a onClick={() => handleFavoriteBleep(bleep._id)}>
+					<div
+						onClick={() => handleFavoriteBleep(bleep._id)}
+						className={styles.metic}>
+						<a>
 							{bleep.favoritedBy.includes(bleepr._id) ? (
 								<HiHeart />
 							) : (
 								<HiOutlineHeart />
 							)}
 						</a>
-						<span> {bleep.favoritedBy.length}</span>
-					</span>
-					<span>
-						<Link to={`/bleeps/${bleep._id}`}>
+						{bleep.favoritedBy.length}
+					</div>
+					<Link to={`/bleeps/${bleep._id}`}>
+						<div className={styles.metric}>
 							<HiOutlineChat />
-						</Link>
-						<span> {bleep.comments.length}</span>
-					</span>
+							{bleep.comments.length}
+						</div>
+					</Link>
 					{props.bleep.author._id === bleepr._id && (
 						<>
 							<Link to={`/bleeps/${bleep._id}/edit`}>
