@@ -36,52 +36,53 @@ const MyProfile = (props) => {
 
 	return (
 		<div className={styles.myProfileContainer}>
-			<div className={styles.profilePageTopHalf}>
-				
-				<img
-					className={styles.profileImage}
-					src={profile?.profilePicture || `https://i.pravatar.cc/300?u=${profile?._id}`}
-					alt="profile picture"
-				/>
+  <div className={styles.profilePageTopHalf}>
+    <img
+      className={styles.profileImage}
+      src={profile?.profilePicture || `https://i.pravatar.cc/300?u=${profile?._id}`}
+      alt="profile picture"
+    />
 
-			
-				<div className={styles.infoColumn}>
-					<h2>{profile?.username || "User not found"}</h2>
-					{showOnlineNow ? (
-						<span className={styles.onlineNow}>Online Now</span>
-					) : (
-						<span className={styles.offlineMsg}>{offlineMsg || "Offline"}</span>
-					)}
-					<p>Age: {profile?.aboutMe?.age || "N/A"}</p>
-					<p>Gender: {profile?.aboutMe?.gender || "N/A"}</p>
-					<p>Location: {profile?.aboutMe?.location || "N/A"}</p>
-					<p>Relationship Status: {profile?.aboutMe?.relationshipStatus || "N/A"}</p>
-				</div>
+    <div className={styles.infoColumn}>
+      <h2>{profile?.username || "User not found"}</h2>
+      {showOnlineNow ? (
+        <span className={styles.onlineNow}>Online Now</span>
+      ) : (
+        <span className={styles.offlineMsg}>{offlineMsg || "Offline"}</span>
+      )}
+      <p>Age: {profile?.aboutMe?.age || "N/A"}</p>
+      <p>{profile?.aboutMe?.gender || "N/A"}</p>
+      <p>{profile?.aboutMe?.location || "N/A"}</p>
+      <p>Relationship Status: {profile?.aboutMe?.relationshipStatus || "N/A"}</p>
+    </div>
 
-			
-				<div className={styles.aboutMeBox}>
-					<h3>About Me</h3>
-					<p>{profile?.aboutMe?.bio || "No additional info"}</p>
-				</div>
-			</div>
-			
-			<div>
-				<h2>Friends</h2>
-				{profile?.friends?.length > 0 ? (
-					profile.friends.map(friend => (
-						<div key={friend._id}>
-							<img src={friend.profilePicture || `https://i.pravatar.cc/300?u=${friend?._id}`}
-							alt={friend.username}
-							/>
-							<p>{friend.username}</p>
-							</div>
-					))
-				) : (
-					<p>No friends yet</p>
-				)}
-			</div>
-		</div>
+    <div className={styles.rightColumn}>
+      <div className={styles.aboutMeBox}>
+        <h3>About Me</h3>
+        <p>{profile?.aboutMe?.bio || "No additional info"}</p>
+      </div>
 
+      <div className={styles.friendsSection}>
+        <h2>{profile?.username}'s friends</h2>
+        {profile?.friends?.length > 0 ? (
+          <div className={styles.friendsBox}>
+            {profile.friends.map(friend => (
+              <div key={friend._id}>
+                <img
+                  src={friend.profilePicture || `https://i.pravatar.cc/300?u=${friend._id}`}
+                  alt={friend.username}
+                />
+                <p>{friend.username}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No friends yet</p>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
 	);
 };
 

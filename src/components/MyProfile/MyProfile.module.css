@@ -1,27 +1,19 @@
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center; 
-  align-items: flex-start; 
-  min-height: 100vh;
-
-}
-
-/* Parent container */
+/* Container for entire profile page */
 .myProfileContainer {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  flex-direction: column; 
+  align-items: center; 
   font-family: Arial, sans-serif;
+  margin-top: 20px;
 }
 
-/* Top half container: left + right */
+/* Top half container: profile pic + right column */
 .profilePageTopHalf {
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  width: 80%; 
+  width: 80%; /* overall width */
+  justify-content: center; /* center the top half */
 }
 
 /* Left column: profile pic + info */
@@ -33,12 +25,13 @@ body {
   font-size: 12px; 
   line-height: 1.2; 
   color: #000;
+  align-items: center;
 }
 
 /* Profile image */
 .profileImage {
   width: 125px;
-  height: auto;
+  height: 125px;
   border: 2px solid #999;
   border-radius: 2px;
   margin-bottom: 4px;
@@ -69,12 +62,79 @@ body {
   line-height: 1.2;
 }
 
-/* Right column: About Me */
+/* Right column wrapper for About Me + Friends */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 350px; /* make it bigger */
+}
+
+/* About Me Box with banner */
 .aboutMeBox {
- width: 300px; 
   border: 1px solid #ccc;
-  padding: 10px;
   font-size: 12px;
   line-height: 1.3;
-  background-color: #fff;
+  background-color: #fff; 
+  padding: 15px; /* add padding to make it bigger */
+}
+
+/* About Me banner heading */
+.aboutMeBox h3 {
+  background-color: orange; /* OG Myspace banner */
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+/* Friends Section with banner */
+.friendsSection {
+  border: 1px solid #ccc;
+  font-size: 12px;
+  line-height: 1.3;
+  background-color: #fff; 
+  padding: 15px; /* bigger box */
+}
+
+/* Friends Section banner heading */
+.friendsSection h2 {
+  background-color: orange; /* OG Myspace banner */
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+/* Friends Grid */
+.friendsBox {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 per row */
+  gap: 10px;
+  justify-items: center;
+}
+
+/* Individual friend card */
+.friendsBox div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.friendsBox img {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #000;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+
+.friendsBox p {
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
 }
