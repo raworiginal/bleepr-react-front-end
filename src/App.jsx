@@ -20,6 +20,7 @@ const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
 	const [bleeprs, setBleeprs] = useState([]);
+	const [favoritedBleep, setFavoritedBleep] = useState(null);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -58,14 +59,6 @@ const App = () => {
 		navigate("/bleeps");
 	};
 
-	const handleFavoriteBleep = async (bleepId) => {
-		await bleepsService.favorite(bleepId);
-		const favoritedBleep = await bleepsService.show(bleepId);
-		console.log(favoritedBleep);
-
-		// setLikedCount(likedBleep.count);
-	};
-
 	const handleUpdateAboutMe = async (bleeprId, formData) => {
 		const updateAboutMe = await bleeprService.editAboutMe(bleeprId, formData);
 
@@ -78,71 +71,67 @@ const App = () => {
 		navigate(`/${bleeprId}/aboutMe`);
 	};
 
-
-
 	return (
 		<>
-			<ThemeProvider> 
-			<NavBar bleeprId={bleepr?._id} />
-			<Routes>
-				<Route
-					path="/bleeps"
-					element={
-						bleepr ? (
-							<BleepFeed
-							bleeps={bleeps}
-							handleDeleteBleep={handleDeleteBleep}
-							handleUpdateBleep={handleUpdateBleep}
-							handleFavoriteBleep={handleFavoriteBleep}
-							/>
-						) : (
-							<Landing />
-						)
-					}
-					/>
-				{bleepr ? (
-					<>
-						<Route
-							path="/bleeps"
-							element={
+			<ThemeProvider>
+				<NavBar bleeprId={bleepr?._id} />
+				<Routes>
+					<Route
+						path="/bleeps"
+						element={
+							bleepr ? (
 								<BleepFeed
-								bleeps={bleeps}
-								handleDeleteBleep={handleDeleteBleep}
-								handleUpdateBleep={handleUpdateBleep}
+									bleeps={bleeps}
+									handleDeleteBleep={handleDeleteBleep}
+									handleUpdateBleep={handleUpdateBleep}
 								/>
-							}
+							) : (
+								<Landing />
+							)
+						}
+					/>
+					{bleepr ? (
+						<>
+							<Route
+								path="/bleeps"
+								element={
+									<BleepFeed
+										bleeps={bleeps}
+										handleDeleteBleep={handleDeleteBleep}
+										handleUpdateBleep={handleUpdateBleep}
+									/>
+								}
 							/>
-						<Route
-							path="bleeps/new"
-							element={<BleepForm handleAddBleep={handleAddBleep} />}
+							<Route
+								path="bleeps/new"
+								element={<BleepForm handleAddBleep={handleAddBleep} />}
 							/>
-						<Route path="bleeps/:bleepId" element={<BleepDetails />} />
+							<Route path="bleeps/:bleepId" element={<BleepDetails />} />
 
-						<Route
-							path="bleeps/:bleepId/edit"
-							element={<BleepForm handleUpdateBleep={handleUpdateBleep} />}
+							<Route
+								path="bleeps/:bleepId/edit"
+								element={<BleepForm handleUpdateBleep={handleUpdateBleep} />}
 							/>
-						<Route
-							path="/:bleeprId/aboutMe"
+							<Route
+								path="/:bleeprId/aboutMe"
+								element={<MyProfile bleeprs={bleeprs} />}
+							/>
 
-							element={<MyProfile bleeprs={bleeprs} />}
+							<Route
+								path="/:bleeprId/aboutMe/edit"
+								element={
+									<AboutMeForm handleUpdateAboutMe={handleUpdateAboutMe} />
+								}
 							/>
-
-						<Route
-							path="/:bleeprId/aboutMe/edit"
-							element={
-								<AboutMeForm handleUpdateAboutMe={handleUpdateAboutMe} />
-							}
-							/>
-					</>
-				) : (
-					<>
-						<Route path="/sign-up" element={<SignUpForm />} />
-						<Route path="/sign-in" element={<SignInForm />} />
-					</>
-				)}
-			</Routes>
-				</ThemeProvider>
+						</>
+					) : (
+						<>
+							<Route path="/sign-up" element={<SignUpForm />} />
+							<Route path="/sign-in" element={<SignInForm />} />
+						</>
+					)}
+				</Routes>
+			</ThemeProvider>
 		</>
 	);
 };
