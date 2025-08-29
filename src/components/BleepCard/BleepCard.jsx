@@ -15,8 +15,8 @@ import {
 const BleepCard = (props) => {
 	const { bleepr } = useContext(BleeprContext);
 	const navigate = useNavigate();
-	const [bleep, setBleep] = useState(props.bleep);
 
+	const [bleep, setBleep] = useState(props.bleep);
 	const handleCardClick = (event) => {
 		if (event.target.closest("a")) return;
 		navigate(`/bleeps/${bleep._id}`);
