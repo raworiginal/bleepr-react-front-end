@@ -27,7 +27,6 @@ const App = () => {
 		const fetchAllBleeps = async () => {
 			const bleepData = await bleepsService.index();
 			setBleeps(bleepData);
-			setDisplayedBleeps(bleepData);
 		};
 		if (bleepr) fetchAllBleeps();
 	}, [bleepr]);
