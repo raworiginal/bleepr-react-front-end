@@ -20,18 +20,8 @@ import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 const App = () => {
 	const { bleepr } = useContext(BleeprContext);
 	const [bleeps, setBleeps] = useState([]);
-	const [displayedBleeps, setDisplayedBleeps] = useState([]);
-	const [query, setQuery] = useState("");
 	const [bleeprs, setBleeprs] = useState([]);
 	const navigate = useNavigate();
-	const { tag } = useParams();
-
-	const filterBleeps = (query) => {
-		const filteredBleeps = bleeps.filter((bleep) => {
-			return bleep.text.includes(query);
-		});
-		setDisplayedBleeps(filteredBleeps);
-	};
 
 	useEffect(() => {
 		const fetchAllBleeps = async () => {
@@ -108,7 +98,6 @@ const App = () => {
 								element={
 									<BleepFeed
 										bleeps={bleeps}
-										setQuery={setQuery}
 										handleDeleteBleep={handleDeleteBleep}
 										handleUpdateBleep={handleUpdateBleep}
 									/>

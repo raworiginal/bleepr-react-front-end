@@ -23,6 +23,7 @@ const BleepFeed = (props) => {
 		return <span aria-busy="true">bleepin' around...</span>;
 	return (
 		<main className="container feed">
+			{tag && <h2>Showing all Bleeps for #{tag}</h2>}
 			{displayedBleeps.map((bleep) => (
 				<BleepCard
 					key={bleep._id}
