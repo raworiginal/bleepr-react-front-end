@@ -3,8 +3,8 @@ import { BleeprContext } from "../../contexts/BleeprContext";
 import { Link, useNavigate } from "react-router";
 import styles from "./BleepCard.module.css";
 import * as bleepsService from "../../services/bleepsService";
-import profanityFilter from "../../services/profanityService";
-
+import { Filter } from "bad-words";
+const profanityFilter = new Filter({ placeHolder: "🤬" });
 import {
 	HiOutlineHeart,
 	HiOutlineChat,
@@ -18,6 +18,10 @@ const BleepCard = (props) => {
 	const navigate = useNavigate();
 
 	const [bleep, setBleep] = useState(props.bleep);
+	const [bleepText, setBleepText] = useState(() =>
+		profanityFilter.clean(props.bleep.text)
+	);
+
 	const handleCardClick = (event) => {
 		if (event.target.closest("a")) return;
 		navigate(`/bleeps/${bleep._id}`);
@@ -45,7 +49,7 @@ const BleepCard = (props) => {
 			</div>
 			<main onClick={handleCardClick} className={styles.bleepText}>
 				<p className={styles.bleepText}>
-					{bleep.text.split(" ").map((word, index) => {
+					{bleepText.split(" ").map((word, index) => {
 						if (word[0] === "#")
 							return (
 								<Link key={index} to={`/bleeps/t/${word.slice(1)}`}>
