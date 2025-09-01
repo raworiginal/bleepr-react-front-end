@@ -3,7 +3,6 @@ import { BleeprContext } from "../../contexts/BleeprContext";
 
 const BleeprList = (props) => {
 	const { bleepr } = useContext(BleeprContext);
-
 	return (
 		<>
 			<h1>find cool bleeprs</h1>
@@ -35,8 +34,9 @@ const BleeprList = (props) => {
 					<p>no Bleeprs yet</p>
 				)
 			}
-		</>
-	)
-}
 
-export default BleeprList
+		</>
+	);
+};
+
+export default BleeprList;
