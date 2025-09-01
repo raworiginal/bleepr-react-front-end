@@ -1,12 +1,36 @@
-# React + Vite
+# Bleepr
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![bleepo](./src/assets/images/Bleepo-transparent.svg)
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [bleepr](https://bleepr.netlify.app/)
+- [back-end repo](https://github.com/raworiginal/bleepr-express-back-end)
+- [planning materials](https://trello.com/b/MaR3HXMP/bleepr)
 
-## Expanding the ESLint configuration
+## About The App
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Bleepr is a retro social media app, an homage to early twitter and myspace. Bleeprs can create bleeps, read other Bleeprs bleeps, edit their own bleeps, and delete their own bleeps. Additionally Bleeprs, can comment on bleeps and edit and delete those comments.
+
+Bleeprs can also filter bleeps based on Hashtags.
+
+Bleeprs also have a profile page with an about me sections, and bleeprs can edit that about me section.
+
+We built this project because we miss the sense of discovery and engagement that came with social media before algorithmically generated feeds.
+
+## Technologies
+
+- MongoDb
+- Express
+- React
+- Node.js
+- PicoCSS
+- bad-words
+
+## Next Steps
+
+While working on this project with pushed against the limits of MongoDB in a social media project. Specifically when it came to adding Friends to our Bleepr pages. So in our next iteration of Bleepr, we will migrate from MongoDb to a relational database like PostgresSQL.
+
+We would like to add functionality like add friends, and having a Top 8 list.
+
+We would like to allow users to upload profile pictures.
