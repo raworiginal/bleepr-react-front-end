@@ -32,7 +32,7 @@ const MyProfile = (props) => {
 		const isSignedIn = bleepr._id === profile._id;
 		showOnlineNow = isSignedIn;
 	}
-	console.log(profile.friends);
+
 	return (
 		<div className={styles.myProfileContainer}>
 			<div className={styles.profilePageTopHalf}>
@@ -45,18 +45,18 @@ const MyProfile = (props) => {
 					alt="profile picture"
 				/>
 
-    <div className={styles.infoColumn}>
-      <h2>{profile?.username || "User not found"}</h2>
-      {showOnlineNow ? (
-        <span className={styles.onlineNow}>Online Now</span>
-      ) : (
-        <span className={styles.offlineMsg}>{offlineMsg || "Offline"}</span>
-      )}
-      <p>Age: {profile?.aboutMe?.age || "N/A"}</p>
-      <p>{profile?.aboutMe?.gender || "N/A"}</p>
-      <p>{profile?.aboutMe?.location || "N/A"}</p>
-      <p>{profile?.aboutMe?.relationshipStatus || "N/A"}</p>
-    </div>
+				<div className={styles.infoColumn}>
+					<h2>{profile?.username || "User not found"}</h2>
+					{showOnlineNow ? (
+						<span className={styles.onlineNow}>Online Now</span>
+					) : (
+						<span className={styles.offlineMsg}>{offlineMsg || "Offline"}</span>
+					)}
+					<p>Age: {profile?.aboutMe?.age || "N/A"}</p>
+					<p>{profile?.aboutMe?.gender || "N/A"}</p>
+					<p>{profile?.aboutMe?.location || "N/A"}</p>
+					<p>{profile?.aboutMe?.relationshipStatus || "N/A"}</p>
+				</div>
 
 				<div className={styles.rightColumn}>
 					<div className={styles.aboutMeBox}>
