@@ -32,7 +32,7 @@ const MyProfile = (props) => {
 		const isSignedIn = bleepr._id === profile._id;
 		showOnlineNow = isSignedIn;
 	}
-	console.log(profile.friends);
+
 	return (
 		<div className={styles.myProfileContainer}>
 			<div className={styles.profilePageTopHalf}>
