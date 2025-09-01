@@ -53,7 +53,7 @@ const MyProfile = (props) => {
       <p>Age: {profile?.aboutMe?.age || "N/A"}</p>
       <p>{profile?.aboutMe?.gender || "N/A"}</p>
       <p>{profile?.aboutMe?.location || "N/A"}</p>
-      <p>Relationship Status: {profile?.aboutMe?.relationshipStatus || "N/A"}</p>
+      <p>{profile?.aboutMe?.relationshipStatus || "N/A"}</p>
     </div>
 
     <div className={styles.rightColumn}>

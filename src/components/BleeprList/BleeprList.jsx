@@ -3,10 +3,10 @@ import { BleeprContext } from "../../contexts/BleeprContext";
 
 const BleeprList = (props) => {
 	const { bleepr } = useContext(BleeprContext);
-	console.log(bleepr);
+
 	return (
 		<>
-			<h1>this is where the bleepr list will go</h1>
+			<h1>find cool bleeprs</h1>
 
 			{
 				props.bleeprs.length ? (
@@ -16,14 +16,18 @@ const BleeprList = (props) => {
 								alt={b.username}
 							/>
 							<p>{b.username}</p>
-							<p>{b.friends.join("")}</p>
-						{
-							b.friends.includes(bleepr._id) ? (
-								<button>remove</button>
-							) : (
-								<button>add</button>
-							)
-						}
+							
+							{
+								b.friends.includes(bleepr._id) ? (
+									<button onClick={() => props.handleUpdateFriends(b._id)}>
+										remove
+									</button>
+								) : (
+									<button onClick={() => props.handleUpdateFriends(b._id)}>
+										add
+									</button>
+								)
+							}
 
 						</div>
 					))

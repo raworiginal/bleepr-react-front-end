@@ -73,8 +73,10 @@ const App = () => {
 	};
 	
 	const handleUpdateFriends = async (friendId) => {
-		const updatedBleepr = await bleepsService.editFriend(friendId)
+		const updatedBleepr = await bleeprService.editFriend(friendId)
 		setBleeprs(updatedBleepr);
+		console.log(updatedBleepr)
+		navigate("/")
 	}
 
 	return (
@@ -88,6 +90,7 @@ const App = () => {
 							bleepr ? (
 								<BleeprList
 									bleeprs={bleeprs}
+									handleUpdateFriends={handleUpdateFriends}
 									
 								/>
 							) : (

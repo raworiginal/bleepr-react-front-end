@@ -21,12 +21,14 @@ const NavBar = () => {
     <nav className="container">
       <ul>
         <li>
+          <Link to="/">
           <img
             src="https://images.pexels.com/photos/33642104/pexels-photo-33642104.png"
             alt="bleepo-nav"
             className="bleepo-nav"
             width="60px"
           />
+          </Link>
         </li>
       </ul>
       <ColorSchemeSwitcher className="contrast" />
