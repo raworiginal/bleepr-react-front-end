@@ -27,7 +27,7 @@ const BleeprList = (props) => {
 									</button>
 								)
 							}
-
+						
 						</div>
 					))
 				) : (
