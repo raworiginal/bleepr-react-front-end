@@ -15,7 +15,7 @@ const BleeprList = (props) => {
 							alt={b.username}
 						/>
 						<p>{b.username}</p>
-						{console.log(b.friends)}
+
 						{b.friends.includes(bleepr._id) ? (
 							<button onClick={() => props.handleUpdateFriends(b._id)}>
 								remove
