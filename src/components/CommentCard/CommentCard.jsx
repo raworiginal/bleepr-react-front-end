@@ -38,8 +38,8 @@ console.log(props)
         <img
           className={styles.avatar}
           src={
-            props.bleep.author.profilePicture ||
-            `https://i.pravatar.cc/300?u=${props.bleep.author._id}`
+            props.comment.author.profilePicture ||
+            `https://i.pravatar.cc/300?u=${props.comment.author._id}`
           }
           alt="profile picture"
         />
