@@ -28,10 +28,10 @@ We built this project because we miss the sense of discovery and engagement that
 - PicoCSS
 - bad-words
 
-## Next Steps
+## Next Steps (WIP)
 
 While working on this project with pushed against the limits of MongoDB in a social media project. Specifically when it came to adding Friends to our Bleepr pages. So in our next iteration of Bleepr, we will migrate from MongoDb to a relational database like PostgresSQL.
 
-We would like to add functionality like add friends, and having a Top 8 list.
+We would like to add functionality like add and remove friends, and having a Top 8 list.
 
 We would like to allow users to upload profile pictures.
