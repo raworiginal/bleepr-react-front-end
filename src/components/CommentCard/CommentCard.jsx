@@ -12,7 +12,7 @@ import {
 const CommentCard = (props) => {
   
   const { bleepr } = useContext(BleeprContext);
-  
+
 
   const handleDeleteComment = async (commentId) => {
     const deletedComment = await BleepsService.deleteComment(
