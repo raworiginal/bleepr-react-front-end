@@ -1,0 +1,40 @@
+button{
+  border: none;
+}
+
+.topRow {
+	display: flex;
+	justify-content: space-between;
+	margin: 0.25em 0.5em;
+}
+.username {
+	text-align: center;
+}
+.avatarFrame {
+	height: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	aspect-ratio: 1/1;
+}
+.avatar {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.date {
+	text-align: right;
+}
+.bottomRow {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+  border: 10px, pink;
+}
+
+
+.metic:hover {
+	cursor: pointer;
+}

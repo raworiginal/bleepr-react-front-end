@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { BleeprContext } from "../../contexts/BleeprContext";
 import * as BleepsService from "../../services/bleepsService";
+import styles from "./CommentCard.module.css"
 import {
   HiOutlineHeart,
   HiOutlineChat,
@@ -33,39 +34,61 @@ const CommentCard = (props) => {
 console.log(props)
   return (
     <article key={props.comment._id}>
-      <header>
-        <p>
-          {`${props.comment.author.username} posted on ${new Date(
-            props.comment.createdAt
-          ).toLocaleDateString()}`}
-        </p>
-      </header>
+      <div className={styles.topRow}>
+        <img
+          className={styles.avatar}
+          src={
+            props.bleep.author.profilePicture ||
+            `https://i.pravatar.cc/300?u=${props.bleep.author._id}`
+          }
+          alt="profile picture"
+        />
+        <div className={styles.username}>
+          <p>{`@${props.comment.author.username}`}</p>
+        </div>
+      </div>
 
       {props.comment.author._id === bleepr._id && (
         <>
-          {props.isBeingEdited === true ? (
-            <form onSubmit={props.handleSubmit}>
-              <input
-                required
-                type="text"
-                form="comment-form"
-                name="text"
-                id="comment"
-                value={props.formData.text}
-                onChange={props.handleChange}
-              />
-              <button type="submit">Submit</button>
-            </form>
-          ) : (
-            <p>{props.comment.text}</p>
-          )}
-          <button onClick={() => toggleEdit(props.comment)}>
-            <HiOutlinePencil />
-          </button>
+            {props.isBeingEdited === true ? (
+              <form onSubmit={props.handleSubmit}>
+                <input
+                  required
+                  type="text"
+                  form="comment-form"
+                  name="text"
+                  id="comment"
+                  value={props.formData.text}
+                  onChange={props.handleChange}
+                />
+                <button type="submit">Submit</button>
+              </form>
+            ) : (
+              <p>{props.comment.text}</p>
+            )}
 
-          <button onClick={() => handleDeleteComment(props.comment._id)}>
-            <HiOutlineTrash />
-          </button>
+          <div className={styles.bottomRow}>
+            <button
+              className="outline "
+              onClick={() => toggleEdit(props.comment)}
+            >
+              <HiOutlinePencil />
+            </button>
+
+            <button
+              className="outline "
+              onClick={() => handleDeleteComment(props.comment._id)}
+            >
+              <HiOutlineTrash />
+            </button>
+              <div className={styles.date}>
+              <>
+                {`posted on ${new Date(
+                props.bleep.createdAt
+              ).toLocaleDateString()}`}
+              </>
+            </div>
+          </div>
         </>
       )}
     </article>
