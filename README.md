@@ -17,7 +17,8 @@ Bleeprs can also filter bleeps based on Hashtags.
 Bleeprs also have a profile page with an about me sections, and bleeprs can edit that about me section.
 
 We built this project because we miss the sense of discovery and engagement that came with social media before algorithmically generated feeds.
-
+## Attribution
+- Profile pics from [Pravator](https://pravatar.cc/)
 ## Technologies
 
 - MongoDb
