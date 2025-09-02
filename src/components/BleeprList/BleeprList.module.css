@@ -1,103 +1,103 @@
 /* Page background + font */
-body {
-  background: transparent; 
-  color: #000;
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
+.bleeprListContainer {
+	background: transparent;
+	color: #000;
+	font-family: "Trebuchet MS", Arial, sans-serif;
+	text-align: center;
+	margin: 0;
+	padding: 0;
 }
 
 /* Title bar */
 .title {
-  font-size: 2rem;
-  color: #fff;
-  background-color: #003366; 
-  padding: 0.5rem 1rem;
-  margin: 2rem auto 1rem auto;
-  border: 2px solid #ff6600; 
-  border-radius: 4px;
-  text-shadow: 1px 1px #000;
-  display: inline-block;
+	font-size: 2rem;
+	color: #fff;
+	background-color: #003366;
+	padding: 0.5rem 1rem;
+	margin: 2rem auto 1rem auto;
+	border: 2px solid #ff6600;
+	border-radius: 4px;
+	text-shadow: 1px 1px #000;
+	display: inline-block;
 }
 
 /* Container for cards */
 .bleeprContainer {
-  max-width: 1000px;
-  margin: 0 auto 2rem auto;
-  padding: 0 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1.5rem;
-  justify-items: center;
+	max-width: 1000px;
+	margin: 0 auto 2rem auto;
+	padding: 0 1rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	gap: 1.5rem;
+	justify-items: center;
 }
 
 /* Each bleepr card */
 .bleeprCard {
-  background-color: #fff; 
-  color: #000;
-  border: 2px solid #ff6600; 
-  border-radius: 6px;
-  padding: 1rem;
-  width: 160px;
-  box-shadow: 0 0 5px #999;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	background-color: #fff;
+	color: #000;
+	border: 2px solid #ff6600;
+	border-radius: 6px;
+	padding: 1rem;
+	width: 160px;
+	box-shadow: 0 0 5px #999;
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .bleeprCard:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px #ff6600;
+	transform: scale(1.05);
+	box-shadow: 0 0 12px #ff6600;
 }
 
 /* Profile pictures */
 .bleeprPic {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 4px;
-  border: 2px solid #003366;
-  margin-bottom: 0.5rem;
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	border-radius: 4px;
+	border: 2px solid #003366;
+	margin-bottom: 0.5rem;
 }
 
 /* Username */
 .bleeprName {
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+	font-weight: bold;
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
 }
 
 /* Buttons */
 .bleeprBtn {
-  display: inline-block;
-  padding: 0.3rem 0.8rem;
-  border: none;
-  border-radius: 3px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 0.9rem;
-  margin-top: 0.3rem;
-  box-shadow: 0 0 3px #999;
+	display: inline-block;
+	padding: 0.3rem 0.8rem;
+	border: none;
+	border-radius: 3px;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 0.9rem;
+	margin-top: 0.3rem;
+	box-shadow: 0 0 3px #999;
 }
 
 .add {
-  background-color: #ff6600; 
-  color: #fff;
+	background-color: #ff6600;
+	color: #fff;
 }
 
 .remove {
-  background-color: #cc0000; 
-  color: #fff;
+	background-color: #cc0000;
+	color: #fff;
 }
 
 .bleeprBtn:hover {
-  opacity: 0.85;
-  box-shadow: 0 0 6px #ff6600;
+	opacity: 0.85;
+	box-shadow: 0 0 6px #ff6600;
 }
 
 /* Empty state */
 .noBleeprs {
-  grid-column: 1 / -1;
-  color: #666;
-  font-style: italic;
-  margin-top: 2rem;
+	grid-column: 1 / -1;
+	color: #666;
+	font-style: italic;
+	margin-top: 2rem;
 }
