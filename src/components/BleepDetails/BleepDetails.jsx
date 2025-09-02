@@ -22,7 +22,7 @@ const BleepDetails = (props) => {
 			setBleep(bleepData);
 		};
 		fetchBleep();
-	}, [bleepId, toggle]);
+	}, [bleepId, toggle,]);
 
 	const handleAddComment = async (commentFormData) => {
 		const newComment = await BleepsService.createComment(
