@@ -22,13 +22,15 @@ const BleeprList = (props) => {
 							{b.friends.includes(bleepr._id) ? (
 								<button
 									className={`${styles.bleeprBtn} ${styles.remove}`}
-									onClick={() => props.handleUpdateFriends(b._id)}>
+									onClick={() => props.handleUpdateFriends(b._id)}
+									disabled>
 									remove
 								</button>
 							) : (
 								<button
 									className={`${styles.bleeprBtn} ${styles.add}`}
-									onClick={() => props.handleUpdateFriends(b._id)}>
+									onClick={() => props.handleUpdateFriends(b._id)}
+									disabled>
 									add
 								</button>
 							)}
